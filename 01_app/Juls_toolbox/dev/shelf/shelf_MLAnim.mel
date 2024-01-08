@@ -1,0 +1,854 @@
+global proc shelf_MLAnim () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Toggle the visible state of selected nodes. Force if possible." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_toggleVisibility" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_toggleVisibility.png" 
+        -image1 "ml_icons/ml_toggleVisibility.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_toggleVisibility;ml_toggleVisibility.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_toggleVisibility\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Open a UI to trace the animation of a node across the screen." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_arcTracer" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_arcTracer.png" 
+        -image1 "ml_icons/ml_arcTracer.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_arcTracer;ml_arcTracer.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Trace Camera" ( "import ml_arcTracer;ml_arcTracer.traceCamera()" )
+        -mip 0
+        -mi "Trace World" ( "import ml_arcTracer;ml_arcTracer.traceWorld()" )
+        -mip 1
+        -mi "Retrace" ( "import ml_arcTracer;ml_arcTracer.retraceArc()" )
+        -mip 2
+        -mi "Clear Arcs" ( "import ml_arcTracer;ml_arcTracer.clearArcs()" )
+        -mip 3
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_arcTracer\",absolute=True)" )
+        -mip 4
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Open an UI to edit animation curves in bulk." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_animCurveEditor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "edit" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_animCurveEditor.png" 
+        -image1 "ml_icons/ml_animCurveEditor.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_animCurveEditor;ml_animCurveEditor.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_animCurveEditor\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Reset the selected nodes or channels to their default values." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_resetChannels" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "reset" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_resetChannels.png" 
+        -image1 "ml_icons/ml_resetChannels.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_resetChannels;ml_resetChannels.resetPuppetControl()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Reset Transforms Only" ( "import ml_resetChannels;ml_resetChannels.main(transformsOnly=True)" )
+        -mip 0
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_resetChannels\",absolute=True)" )
+        -mip 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Open a UI to set keyframes with options." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_setKey" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "set" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_setKey.png" 
+        -image1 "ml_icons/ml_setKey.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_setKey;ml_setKey.setKey(insert=True, deleteSubFrames=True, visibleInGraphEditor=True, keyShapes=False, selectedChannels=True, keyKeyed=True)" 
+        -sourceType "python" 
+        -doubleClickCommand "import ml_setKey;ml_setKey.setKey(insert=True, deleteSubFrames=True, keyShapes=False, selectedChannels=True)" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Set Key UI" ( "import ml_setKey;ml_setKey.ui()" )
+        -mip 0
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_setKey\",absolute=True)" )
+        -mip 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Click to delete selected keys, double click to delete selected channels. Right click for more options." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_deleteKey" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "del" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_deleteKey.png" 
+        -image1 "ml_icons/ml_deleteKey.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_deleteKey;ml_deleteKey.deleteKey(deleteSubFrames=True, visibleInGraphEditor=True, selectedKeys=True)" 
+        -sourceType "python" 
+        -doubleClickCommand "import ml_deleteKey;ml_deleteKey.deleteChannels()" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Delete Key UI" ( "import ml_deleteKey;ml_deleteKey.ui()" )
+        -mip 0
+        -mi "Delete Selected Channels" ( "import ml_deleteKey;ml_deleteKey.deleteChannels()" )
+        -mip 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_deleteKey\",absolute=True)" )
+        -mip 2
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select all keyed nodes within a namespace or hierarchy." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_selectKeyed" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_selectKeyed.png" 
+        -image1 "ml_icons/ml_selectKeyed.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_selectKeyed;ml_selectKeyed.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_selectKeyed\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Open a UI to copy animation from one node or hierarchy to another." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_copyAnim" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_copyAnim.png" 
+        -image1 "ml_icons/ml_copyAnim.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_copyAnim;ml_copyAnim.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Copy Single" ( "import ml_copyAnim;ml_copyAnim.copySingle()" )
+        -mip 0
+        -mi "Copy Hierarchy" ( "import ml_copyAnim;ml_copyAnim.copyHierarchy()" )
+        -mip 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_copyAnim\",absolute=True)" )
+        -mip 2
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Select two nodes to transfer the keytimes from the first to the second." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_transferKeytimes" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "xfer" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_transferKeytimes.png" 
+        -image1 "ml_icons/ml_transferKeytimes.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_transferKeytimes;ml_transferKeytimes.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_transferKeytimes\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Open a UI to change time based on keyframes and selection." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_goToKeyframe" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_goToKeyframe.png" 
+        -image1 "ml_icons/ml_goToKeyframe.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_goToKeyframe;ml_goToKeyframe.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_goToKeyframe\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Open a UI to create holds." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_hold" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "hold" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_hold.png" 
+        -image1 "ml_icons/ml_hold.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_hold;ml_hold.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Hold Current" ( "import ml_hold;ml_hold.current()" )
+        -mip 0
+        -mi "Hold Average" ( "import ml_hold;ml_hold.average()" )
+        -mip 1
+        -mi "<< Previous" ( "import ml_hold;ml_hold.previous()" )
+        -mip 2
+        -mi ">> Next" ( "import ml_hold;ml_hold.next()" )
+        -mip 3
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_hold\",absolute=True)" )
+        -mip 4
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Click to weight keys by dragging, double click to open UI." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_breakdown" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "BD" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_breakdown.png" 
+        -image1 "ml_icons/ml_breakdown.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_breakdown;ml_breakdown.drag()" 
+        -sourceType "python" 
+        -doubleClickCommand "import ml_breakdown;ml_breakdown.ui()" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Breakdown UI" ( "import ml_breakdown;ml_breakdown.ui()" )
+        -mip 0
+        -mi "<< Previous" ( "import ml_breakdown;ml_breakdown.weightPrevious()" )
+        -mip 1
+        -mi ">> Next" ( "import ml_breakdown;ml_breakdown.weightNext()" )
+        -mip 2
+        -mi "Average" ( "import ml_breakdown;ml_breakdown.weightAverage()" )
+        -mip 3
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_breakdown\",absolute=True)" )
+        -mip 4
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Adjust the value of the current key by dragging in the viewport." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_keyValueDragger" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_keyValueDragger.png" 
+        -image1 "ml_icons/ml_keyValueDragger.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_keyValueDragger;ml_keyValueDragger.drag()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_keyValueDragger\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Open a UI for setting keyframe tangent weight." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_tangentWeight" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_tangentWeight.png" 
+        -image1 "ml_icons/ml_tangentWeight.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_tangentWeight;ml_tangentWeight.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "+ Plus" ( "import ml_tangentWeight;ml_tangentWeight.plus()" )
+        -mip 0
+        -mi "- Minus" ( "import ml_tangentWeight;ml_tangentWeight.minus()" )
+        -mip 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_tangentWeight\",absolute=True)" )
+        -mip 2
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_ballisticAnimation" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_ballisticAnimation" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "balli" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "render_surfaceShader.png" 
+        -image1 "render_surfaceShader.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_ballisticAnimation;ml_ballisticAnimation.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_ballisticAnimation\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_cameraDepthDragger" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_cameraDepthDragger" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_cameraDepthDragger.png" 
+        -image1 "ml_icons/ml_cameraDepthDragger.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_cameraDepthDragger;ml_cameraDepthDragger.drag()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_cameraDepthDragger\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_convertRotationOrder" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_convertRotationOrder" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_convertRotationOrder.png" 
+        -image1 "ml_icons/ml_convertRotationOrder.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_convertRotationOrder;ml_convertRotationOrder.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_convertRotationOrder\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_frameGraphEditor" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_frameGraphEditor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "frame" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "render_surfaceShader.png" 
+        -image1 "render_surfaceShader.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_frameGraphEditor;ml_frameGraphEditor.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_frameGraphEditor\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_graphEditorMask" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_graphEditorMask" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "graph" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "render_surfaceShader.png" 
+        -image1 "render_surfaceShader.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_graphEditorMask;ml_graphEditorMask.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_graphEditorMask\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_pivot" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_pivot" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "pivot" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "render_surfaceShader.png" 
+        -image1 "render_surfaceShader.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_pivot;ml_pivot.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_pivot\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_stopwatch" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_stopwatch" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_stopwatch.png" 
+        -image1 "ml_icons/ml_stopwatch.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_stopwatch;ml_stopwatch.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_stopwatch\",absolute=True)" )
+        -mip 0
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 39
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "ml_worldBake" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "ml_worldBake" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 1 0.5 0 
+        -overlayLabelBackColor 0 0 0 0 
+        -image "ml_icons/ml_worldBake.png" 
+        -image1 "ml_icons/ml_worldBake.png" 
+        -style "iconOnly" 
+        -marginWidth 0
+        -marginHeight 1
+        -command "import ml_worldBake;ml_worldBake.ui()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+        -mi "Documentation" ( "import maya.cmds;maya.cmds.showHelp(\"http://morganloomis.com/tool/ml_worldBake\",absolute=True)" )
+        -mip 0
+    ;
+
+} 
