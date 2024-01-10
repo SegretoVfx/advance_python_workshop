@@ -1,48 +1,47 @@
 @echo off
 :: MAYA
 
-:: --- VARIABLES ---
-:: Variable used locally created for readability.
-set "dev=dev"
-set "modules=modules"
-set "plugins=plugins"
-set "shelf=shelf"
-set "packages=packages"
-set "icons=icons"
-set "scripts=scripts"
-set "py=py"
-set "mel=mel"
+:: --- PATHS ---
 :: Path for the current project.
 set "MASTER_ROOT=P:\PYTHON\advance_python_workshop\01_app"
 set "PROJECT_NAME=Juls_toolbox"
-
-:: --- PATHS ---
 :: Variables setting up the paths to the tree hierarchy.
 set "PROJECT_ROOT=%MASTER_ROOT%\%PROJECT_NAME%"
-set "PIPELINEPATH=%PROJECT_ROOT%\%dev%"
+set "PIPELINEPATH=%PROJECT_ROOT%\dev"
+
+:: --- VARIABLES ---
+:: Variable used locally created for readability.
+set "modules=%PIPELINEPATH%\modules"
+set "ml_tools=%PIPELINEPATH%\modules\ml_tools"
+set "plug-ins=%PIPELINEPATH%\plug-ins"
+set "shelves=%PIPELINEPATH%\shelves"
+set "packages=%PIPELINEPATH%\packages"
+set "icons=%PIPELINEPATH%\icons"
+set "python=%PIPELINEPATH%\scripts\py"
+set "mel=%PIPELINEPATH%\scripts\mel"
 
 :: --- ENVIRONMENT VAR ---
 :: Adding the project's path to the environment variables.
 :: --- PYTHON ---
-set "PYTHONPATH=%PIPELINEPATH%\%scripts%\%py%"
+set "PYTHONPATH=%python%"
 
 :: --- MEL SCRIPTS ---
-set "MAYA_SCRIPT_PATH=%PIPELINEPATH%\%scripts%\%mel%"
+set "MAYA_SCRIPT_PATH=%mel%"
 
 :: --- MODULES ---
-set "MAYA_MODULE_PATH=%PIPELINEPATH%\%modules%;%MAYA_MODULE_PATH%"
+set "MAYA_MODULE_PATH=%modules%;%ml_tools%;%MAYA_MODULE_PATH%"
 
-:: --- PLUGINS ---
-set "MAYA_PLUG_IN_PATH=%PIPELINEPATH%\%plugins%;%MAYA_PLUG_IN_PATH%"
+:: --- PLUG-INS ---
+set "MAYA_PLUG_IN_PATH=%plug-ins%;%MAYA_PLUG_IN_PATH%"
 
 :: --- SHELF ---
-set "MAYA_SHELF_PATH=%PIPELINEPATH%\%shelf%;%MAYA_SHELF_PATH%"
+set "MAYA_SHELF_PATH=%shelves%;%MAYA_SHELF_PATH%"
 
 :: --- PACKAGES ---
-set "MAYA_PACKAGE_PATH=%PIPELINEPATH%\%packages%;%MAYA_PACKAGE_PATH%"
+set "MAYA_PACKAGE_PATH=%packages%;%MAYA_PACKAGE_PATH%"
 
 :: --- SPLASHSCREEN ---
-set "XBMLANGPATH=%PIPELINEPATH%\%icons%;%XBMLANGPATH%"
+set "XBMLANGPATH=%icons%;%XBMLANGPATH%"
 
 
 :: --- MAYA VERSION ---
