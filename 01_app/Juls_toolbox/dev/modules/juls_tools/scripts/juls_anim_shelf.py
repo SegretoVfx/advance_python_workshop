@@ -1,5 +1,5 @@
 '''
-animshelf.py
+juls_anim_shelf.py
 
 
 Description:
@@ -20,24 +20,22 @@ Feb 2022
 
 
 import maya.cmds as cmds
-import os 
 
 from functools import partial
 
 
-from . import builder
-from . import functions as fun
-from . import info
+from . import juls_shelf_builder as jbuild
+from . import juls_shelf_functions as jfunc
+from . import juls_shelf_info as jinfo
 
 import importlib
 
-importlib.reload(builder)
-importlib.reload(fun)
-importlib.reload(info)
-# importlib.importlib.reload(asf)
+importlib.reload(jbuild)
+importlib.reload(jfunc)
+importlib.reload(jinfo)
 
 
-class AnimShelf(builder.Builder):
+class AnimShelf(jbuild.Builder):
     def build(self):
 
 
@@ -46,26 +44,26 @@ class AnimShelf(builder.Builder):
 
         self.add_button("", icon = "pxoanim_shelf_SGexchange.png",
                           annotation = "Right-click change shot context")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadChangeContext)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadChangeContext)
         p = cmds.popupMenu(b = 1)
 
         # CHANGE CONTEXT
         self.add_menu_item(p, "Change Shot Context", icon = "", 
-                           command = fun.loadChangeContext)
+                           command = jfunc.loadChangeContext)
 
         # DISPLAY CONTEXT
         self.add_menu_item(p, "Display Shot Context", icon = "", 
-                           command = fun.loadContext)
+                           command = jfunc.loadContext)
 
         # SHOTGRID LOADER
         self.add_menu_item(p, "Shotgrid Loader UI", 
                            icon = "pxoanim_shelf_SG.png",  
-                           command = fun.loadSGCacheUI)
+                           command = jfunc.loadSGCacheUI)
 
         ## LOAD SCENE
         self.add_button(label= "", annotation = "Load Scene UI" , 
                         icon = "pxoanim_shelf_open.png", 
-                        command = partial(fun.loadSaveTool, 'load'))
+                        command = partial(jfunc.loadSaveTool, 'load'))
 
 
 
@@ -76,12 +74,12 @@ class AnimShelf(builder.Builder):
         ## SAVE LOCAL
         self.add_button(label= "", annotation = "Save scene" , 
                         icon = "pxoanim_shelf_saveLocal.png", 
-                        command = fun.loadDefaultSave)
+                        command = jfunc.loadDefaultSave)
                         
         ## SAVE AS
         self.add_button(label= "", annotation = "Save increment scene" , 
                         icon = "pxoanim_shelf_saveSG.png", 
-                        command = partial(fun.loadSaveTool, 'save'))
+                        command = partial(jfunc.loadSaveTool, 'save'))
 
 
         self.add_separator()
@@ -90,26 +88,26 @@ class AnimShelf(builder.Builder):
         self.add_button("", icon = "pxoanim_shelf_import.png",
                         annotation = "Right-click open Scene Content UI")
         # RMB open most used option
-        p = cmds.popupMenu(b = 3, postMenuCommand = partial(fun.loadSaveTool, 'content'))
+        p = cmds.popupMenu(b = 3, postMenuCommand = partial(jfunc.loadSaveTool, 'content'))
         # LMB will open a sub menu
         p = cmds.popupMenu(b = 1)
 
         ### SCENE CONTENT
         self.add_menu_item(p, "Scene Content UI", 
                            icon = "",  
-                           command = partial(fun.loadSaveTool, 'content'))
+                           command = partial(jfunc.loadSaveTool, 'content'))
         ### ASSET LOADER
         self.add_menu_item(p, "Asset Loader", 
                            icon = "",  
-                           command = partial(fun.loadSaveTool, 'asset'))
+                           command = partial(jfunc.loadSaveTool, 'asset'))
         ### CACHE LOADER
         self.add_menu_item(p, "Cache Loader UI", 
                            icon = "",  
-                           command = fun.loadCacheUI)
+                           command = jfunc.loadCacheUI)
         ### SHOTGUN LOADER 
         self.add_menu_item(p, "Shotgun Loader UI", 
                            icon = "pxoanim_shelf_SG.png",  
-                           command = fun.loadSGCacheUI)
+                           command = jfunc.loadSGCacheUI)
 
         self.add_sub_separator()
 
@@ -117,7 +115,7 @@ class AnimShelf(builder.Builder):
         ### UPDATE ALL REFERENCE
         self.add_menu_item(p, "Update All Referenced Assets",  
                            icon = "",
-                           command = fun.updateAllReference)
+                           command = jfunc.updateAllReference)
 
 
 
@@ -130,57 +128,57 @@ class AnimShelf(builder.Builder):
         self.add_button(label = "Files", icon = "",
                         annotation = "Right-click open Shot folder")
         #  RMB open most used option
-        p = cmds.popupMenu(b = 3, postMenuCommand = partial(fun.open_shot_folder, 'content'))
+        p = cmds.popupMenu(b = 3, postMenuCommand = partial(jfunc.open_shot_folder, 'content'))
         # LMB will open a sub menu
         p = cmds.popupMenu(b = 1)
 
         # FOLDER
         self.add_menu_item(p, "open Shot Project folder", 
                            icon = "",  
-                           command = partial(fun.open_shot_folder, 'content'))
+                           command = partial(jfunc.open_shot_folder, 'content'))
         # IMAGE SEQUENCE
         self.add_menu_item(p, "open Shot Framestore folder", 
                            icon = "",  
-                           command = partial(fun.open_shot_images_folder, 'asset'))
+                           command = partial(jfunc.open_shot_images_folder, 'asset'))
 
 
 
         ## SHOTGUN INFO
         self.add_button("", icon = "pxoanim_shelf_SGinfo.png",
                           annotation = "Right-click open Shotgun")
-        p = cmds.popupMenu(b = 3, postMenuCommand =  fun.loadSGOpen)
+        p = cmds.popupMenu(b = 3, postMenuCommand =  jfunc.loadSGOpen)
         p = cmds.popupMenu(b = 1)
         
         # open task
         self.add_menu_item(p, "open Shotgun on task", 
                            icon = "", 
-                           command = partial(fun.loadSGOpen, 'task'))
+                           command = partial(jfunc.loadSGOpen, 'task'))
         # open Shot
         self.add_menu_item(p, "open Shotgun on Shot", 
                            icon = "", 
-                           command = partial(fun.loadSGOpen, 'shot'))
+                           command = partial(jfunc.loadSGOpen, 'shot'))
         # open sequence
         self.add_menu_item(p, "open Shotgun on Sequence", 
                            icon = "", 
-                           command = partial(fun.loadSGOpen, 'sequence'))
+                           command = partial(jfunc.loadSGOpen, 'sequence'))
         # open project
         self.add_menu_item(p, "open Shotgun on Project", 
                            icon = "", 
-                           command = partial(fun.loadSGOpen, 'project'))
+                           command = partial(jfunc.loadSGOpen, 'project'))
 
         self.add_sub_separator()
         
         # open shotgun panel
         self.add_menu_item(p, "open Shotgun panel", 
                            icon = "", 
-                           command = fun.loadSGPanel)
+                           command = jfunc.loadSGPanel)
                            
         self.add_sub_separator()
 
 
         # Open SG Notes 
         self.add_menu_item(p, "Shot Notes", icon = "", 
-                           command = fun.loadSGShotNotes)
+                           command = jfunc.loadSGShotNotes)
 
 
         ##########################################################
@@ -192,23 +190,23 @@ class AnimShelf(builder.Builder):
         ## SHOTGUN EDIT
         self.add_button("", icon = "pxoanim_shelf_SGedit.png",
                           annotation = "Right-click Set timeline to work range")
-        p = cmds.popupMenu(b = 3, postMenuCommand = partial(fun.loadsetFrameRange, 'shot'))
+        p = cmds.popupMenu(b = 3, postMenuCommand = partial(jfunc.loadsetFrameRange, 'shot'))
         p = cmds.popupMenu(b = 1)
         # set Maya framerange to shot range (from shotgun)
         self.add_menu_item(p, "Set timeline to work range", 
                            icon = "", 
-                           command = partial(fun.loadsetFrameRange, 'shot'))
+                           command = partial(jfunc.loadsetFrameRange, 'shot'))
         # set Maya framerange to cut range (from shotgun)
         self.add_menu_item(p, "Set timeline to cut range", 
                            icon = "", 
-                           command = partial(fun.loadsetFrameRange, 'cut'))
+                           command = partial(jfunc.loadsetFrameRange, 'cut'))
                            
         self.add_sub_separator()
         
         # set Maya scene resolution (from shotgun)
         self.add_menu_item(p, "Set Camera resolution from Shotgun", 
                            icon = "", 
-                           command = fun.setResolutionFromSG)
+                           command = jfunc.setResolutionFromSG)
         
                          
 
@@ -218,19 +216,19 @@ class AnimShelf(builder.Builder):
         ## PLAYBLAST
         self.add_button("", icon = "pxoanim_shelf_playblast.png",  
                         annotation = "Right-click open PXO Playblast UI")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadPlayblastUi)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadPlayblastUi)
         p = cmds.popupMenu(b = 1)
         # playblast UI
         self.add_menu_item(p, "PXO Playblast UI", icon = "", 
-                           command = fun.loadPlayblastUi)
+                           command = jfunc.loadPlayblastUi)
         # pxo playblast 
         self.add_menu_item(p, "PXO Playblast", 
                            icon = "", 
-                           command = fun.loadPlayblast)
+                           command = jfunc.loadPlayblast)
         # playblast witness cam
         self.add_menu_item(p, "PXO Witness Playblast", 
                            icon = "", 
-                           command = fun.loadPlayblastWitness)
+                           command = jfunc.loadPlayblastWitness)
 
 
 
@@ -241,27 +239,27 @@ class AnimShelf(builder.Builder):
                
         ## PUBLISH
         self.add_button("", icon = "pxoanim_shelf_publish.png", annotation = "Right-click Deadline Anim Publish UI")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.legacy_loadDeadlinePublish)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.legacy_loadDeadlinePublish)
         p = cmds.popupMenu(b = 1)
         # Open Deadline Publish UI
         self.add_menu_item(p, "Deadline anim publish UI (legacy)",  
                            icon = "", 
-                           command = fun.legacy_loadDeadlinePublish)
+                           command = jfunc.legacy_loadDeadlinePublish)
         # Open Local Publish UI
         self.add_menu_item(p, "Local anim publish UI (legacy)",  
                            icon = "",
-                           command = fun.legacy_loadLocalPublish)
+                           command = jfunc.legacy_loadLocalPublish)
 
         self.add_sub_separator()
 
         # Open Deadline Publish UI
         self.add_menu_item(p, "Deadline pyblish UI",  
                            icon = "", 
-                           command = fun.deadline_pyblish)
+                           command = jfunc.deadline_pyblish)
         # Open Local Publish UI
         self.add_menu_item(p, "Local publish UI",  
                            icon = "",
-                           command = fun.local_pyblish)
+                           command = jfunc.local_pyblish)
 
 
 
@@ -270,14 +268,14 @@ class AnimShelf(builder.Builder):
         # Open Camera Publish UI
         self.add_menu_item(p, "Custom camera publish UI",  
                            icon = "", 
-                           command = fun.loadCameraPublish)
+                           command = jfunc.loadCameraPublish)
         
         self.add_sub_separator()
         
         # Open Camera Publish UI
         self.add_menu_item(p, "Tag list editor UI",  
                            icon = "", 
-                           command = fun.open_tag_manager)
+                           command = jfunc.open_tag_manager)
 
 
 
@@ -351,38 +349,38 @@ class AnimShelf(builder.Builder):
         ## CAMERA TOOLS
         self.add_button("", icon = "pxoanim_shelf_cam.png",
                         annotation = "Right-click Creates followCam on selected node (point Contraint)")
-        p = cmds.popupMenu(b = 3, postMenuCommand = partial(fun.createObserverCamera, 'cam'))
+        p = cmds.popupMenu(b = 3, postMenuCommand = partial(jfunc.createObserverCamera, 'cam'))
         p = cmds.popupMenu(b = 1)
         # creates follow camera on selected node
         self.add_menu_item(p, "Create followCam on selected (point Contraint)",   
                            icon = "", 
-                           command = partial(fun.createObserverCamera, 'cam'))
+                           command = partial(jfunc.createObserverCamera, 'cam'))
         # creates follow camera UI
         self.add_menu_item(p, "Create followCam UI", 
                            icon = "", 
-                           command = partial(fun.createObserverCamera, 'UI'))
+                           command = partial(jfunc.createObserverCamera, 'UI'))
                            
         self.add_sub_separator()
         
         # creates Witness cam
         self.add_menu_item(p, "Create WitnessCam on selected (persp)",   
                            icon = "", 
-                           command = partial(fun.loadSegretoCreateWitnessCamUI, 'Persp'))
+                           command = partial(jfunc.loadSegretoCreateWitnessCamUI, 'Persp'))
         # open Witness cam UI
         self.add_menu_item(p, "Create WitnessCam UI",   
                            icon = "", 
-                           command = fun.loadSegretoCreateWitnessCamUI)
+                           command = jfunc.loadSegretoCreateWitnessCamUI)
                          
         self.add_sub_separator()
                          
         # Print annotation on screen
         self.add_menu_item(p, "Display channel HUD",   
                            icon = "", 
-                           command = partial(fun.loadAnnotationUI, 'show'))
+                           command = partial(jfunc.loadAnnotationUI, 'show'))
         # Print annotation on screen
         self.add_menu_item(p, "delete channel HUD",   
                            icon = "", 
-                           command = partial(fun.loadAnnotationUI,'delete'))
+                           command = partial(jfunc.loadAnnotationUI,'delete'))
         
         self.add_sub_separator()
         
@@ -393,52 +391,52 @@ class AnimShelf(builder.Builder):
         # Fix perspactive
         self.add_menu_item(p, "Fix perspective",   
                            icon = "", 
-                           command = fun.loadFixPersp)
+                           command = jfunc.loadFixPersp)
         # Bake camera UI
         self.add_menu_item(p, "Bake camera UI",   
                            icon = "", 
-                           command = fun.loadBakeCamera)
+                           command = jfunc.loadBakeCamera)
 
 
 
         ## IMAGE PLANE
         self.add_button("", icon = "pxoanim_shelf_imageplane.png",
                         annotation = "Right-click Cache and Play")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadCacheNplay)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadCacheNplay)
         p = cmds.popupMenu(b = 1)
         # Cache the scene and play realtime
         self.add_menu_item(p, "Cache and Play",   
                            icon = "", 
-                           command = fun.loadCacheNplay)
+                           command = jfunc.loadCacheNplay)
         # Image plane helper
         self.add_menu_item(p, "Image Plane Tool UI",   
                            icon = "", 
-                           command = fun.loadImagePlaneHelper)
+                           command = jfunc.loadImagePlaneHelper)
 
 
 
         ## HOLD OUT
         self.add_button("", icon = "pxoanim_shelf_holdout.png",
                         annotation = "Right-click Create holdout useBackground")
-        p = cmds.popupMenu(b = 3, postMenuCommand = partial(fun.loadHoldoutCreator,'useBackground'))
+        p = cmds.popupMenu(b = 3, postMenuCommand = partial(jfunc.loadHoldoutCreator,'useBackground'))
         p = cmds.popupMenu(b = 1)
         # Creat holdout on selected geo (add BG shader)
         self.add_menu_item(p, "Create holdout useBackground", 
                            icon = "", 
-                           command = partial(fun.loadHoldoutCreator,'useBackground'))
+                           command = partial(jfunc.loadHoldoutCreator,'useBackground'))
         # Creat holdout on selected geo (add BG shader)
         self.add_menu_item(p, "Create holdout Grey lambert", 
                            icon = "", 
-                           command = partial(fun.loadHoldoutCreator,'lambert'))
+                           command = partial(jfunc.loadHoldoutCreator,'lambert'))
         # Creat holdout on selected geo (add BG shader)
         self.add_menu_item(p, "Create holdout Black surfaceShader", 
                            icon = "", 
-                           command = partial(fun.loadHoldoutCreator,'surfaceShader'))
+                           command = partial(jfunc.loadHoldoutCreator,'surfaceShader'))
         self.add_sub_separator()
         # Creat holdout on selected geo (add BG shader)
         self.add_menu_item(p, "Revert to default Shader lambert1", 
                            icon = "", 
-                           command = partial(fun.loadHoldoutCreator,'default'))
+                           command = partial(jfunc.loadHoldoutCreator,'default'))
         # Creat holdout on selected geo (add BG shader)
         self.add_menu_item(p, "Select holdout geometry", 
                            icon = "", 
@@ -449,17 +447,17 @@ class AnimShelf(builder.Builder):
         ## SCENE MAINTENANCE
         self.add_button("", icon = "pxoanim_shelf_maintenance.png",
                           annotation = "Right-click open Outliner Color manager UI")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadOutlinerColorManager)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadOutlinerColorManager)
         p = cmds.popupMenu(b = 1)
         # Outliner Color Manager
         self.add_menu_item(p, "Outliner Color Manager UI", icon = "", 
-                           command = fun.loadOutlinerColorManager)
+                           command = jfunc.loadOutlinerColorManager)
         # segreto Create Display Layers
         self.add_menu_item(p, "Create Display layer", icon = "", 
-                           command = fun.loadDisplayLayerCreator)
+                           command = jfunc.loadDisplayLayerCreator)
         # Channel box enhancer
         self.add_menu_item(p, "Install Channel Box Plus", icon = "", 
-                           command = fun.loadChannelBoxPlus)
+                           command = jfunc.loadChannelBoxPlus)
 
         # ## FIX
         # self.add_button("", icon = "pxoanim_shelf_fix.png", 
@@ -483,22 +481,22 @@ class AnimShelf(builder.Builder):
 
         self.add_button(label= "", annotation = "Launch Animschool Picker" , 
                       icon = "pxoanim_shelf_picker.png", 
-                      command = partial(fun.loadAnimSchoolPicker))
+                      command = partial(jfunc.loadAnimSchoolPicker))
 
         
 
         ## LIBRARY
         self.add_button("", icon = "pxoanim_shelf_library.png", 
                         annotation = "Right-click open Studio Library UI")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadStudioLibrary)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadStudioLibrary)
         p = cmds.popupMenu(b = 1)
         # studio library
         self.add_menu_item(p, "Studio Library UI",
                            icon = "studioLibrary.png", 
-                           command = fun.loadStudioLibrary)
+                           command = jfunc.loadStudioLibrary)
         # loadPose2Shelf
         self.add_menu_item(p, "pose2Shelf", icon = "pose2Shelf.png", 
-                           command = fun.loadPose2Shelf)
+                           command = jfunc.loadPose2Shelf)
         # # pose grabber
         # self._disabled_add_menu_item(p, "PXO Pose Grabber UI", 
         #                    icon = "",
@@ -515,57 +513,57 @@ class AnimShelf(builder.Builder):
         ## RIGS
         self.add_button("", icon = "pxoanim_shelf_rigs.png",
                         annotation = "Right-click toggles All/Selected rigs resolution")
-        p = cmds.popupMenu(b = 3, postMenuCommand = partial(fun.loadSwitchResolution, 'tog'))
+        p = cmds.popupMenu(b = 3, postMenuCommand = partial(jfunc.loadSwitchResolution, 'tog'))
         p = cmds.popupMenu(b = 1)
         # Geo to switch Res
         self.add_menu_item(p, "Toggle All/Selected rigs resolution",  
                            icon = "", 
-                           command = partial(fun.loadSwitchResolution, 'tog'))
+                           command = partial(jfunc.loadSwitchResolution, 'tog'))
         # Geo to High Res
         self.add_menu_item(p, "All/Selected rigs to High resolution",  
                            icon = "pxoanim_shelf_rigs_lowtohigh.png", 
-                           command = partial(fun.loadSwitchResolution, 'high'))
+                           command = partial(jfunc.loadSwitchResolution, 'high'))
         # Geo to Low Res
         self.add_menu_item(p, "All/Selected rigs to Low resolution",  
                            icon = "pxoanim_shelf_rigs_hightolow.png",  
-                           command = partial(fun.loadSwitchResolution, 'low'))
+                           command = partial(jfunc.loadSwitchResolution, 'low'))
                          
         self.add_sub_separator()
         
         # Reset Selected
         self.add_menu_item(p, "reset selected controllers",  
                            icon = "", 
-                           command = partial(fun.loadSegretoResetAttr, 'ctrl', False))
+                           command = partial(jfunc.loadSegretoResetAttr, 'ctrl', False))
         # Reset asset
         self.add_menu_item(p, "reset selected asset",  
                            icon = "", 
-                           command = partial(fun.loadSegretoResetAttr, 'asset', False))
+                           command = partial(jfunc.loadSegretoResetAttr, 'asset', False))
         # Reset scene
         self.add_menu_item(p, "reset all scene",  
                            icon = "", 
-                           command = partial(fun.loadSegretoResetAttr, 'scene', False))
+                           command = partial(jfunc.loadSegretoResetAttr, 'scene', False))
                          
         self.add_sub_separator()
         
         # killl anim Selected
         self.add_menu_item(p, "kill animation selected controllers",  
                            icon = "", 
-                           command = partial(fun.loadSegretoResetAttr, 'ctrl', True))
+                           command = partial(jfunc.loadSegretoResetAttr, 'ctrl', True))
         # killl anim  asset
         self.add_menu_item(p, "kill animation selected asset",  
                            icon = "", 
-                           command = partial(fun.loadSegretoResetAttr, 'asset', True))
+                           command = partial(jfunc.loadSegretoResetAttr, 'asset', True))
                          
         self.add_sub_separator()
         
         # Enabling pick walking
         self.add_menu_item(p, "Enable Pick Walking",  
                            icon = "pxoanim_shelf_rigs_pickwalking.png", 
-                           command = fun.loadPickWalking)
+                           command = jfunc.loadPickWalking)
         # Mocap
         self.add_menu_item(p, "Launch Mocap Setup",  
                            icon = "pxoanim_shelf_mocap.png", 
-                           command = fun.loadMoCapsetup)
+                           command = jfunc.loadMoCapsetup)
         
 
 
@@ -575,7 +573,7 @@ class AnimShelf(builder.Builder):
         ## TOOLSETS
         self.add_button("", icon = "pxoanim_shelf_tools.png",
                         annotation = "Right-click open ack tools")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadAckTool)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadAckTool)
         p = cmds.popupMenu(b = 1)
 
 
@@ -584,97 +582,97 @@ class AnimShelf(builder.Builder):
 
         self.add_menu_item(sub, "ml_animCurveEditor", 
             icon="ml_animCurveEditor.png", 
-            command = partial(fun.loadMlTool, "ml_animCurveEditor"))
+            command = partial(jfunc.loadMlTool, "ml_animCurveEditor"))
         self.add_menu_item(sub, "ml_arcTracer", 
             icon="ml_arcTracer.png", 
-            command = partial(fun.loadMlTool, "ml_arcTracer"))
+            command = partial(jfunc.loadMlTool, "ml_arcTracer"))
         self.add_menu_item(sub, "ml_ballisticAnimation", 
             icon="ml_ballisticAnimation.png", 
-            command = partial(fun.loadMlTool, "ml_ballisticAnimation"))
+            command = partial(jfunc.loadMlTool, "ml_ballisticAnimation"))
         self.add_menu_item(sub, "ml_breakdown", 
             icon="ml_breakdown.png", 
-            command = partial(fun.loadMlTool, "ml_breakdown"))
+            command = partial(jfunc.loadMlTool, "ml_breakdown"))
         self.add_menu_item(sub, "ml_cameraDepthDragger", 
             icon="ml_cameraDepthDragger.png", 
-            command = partial(fun.loadMlTool, "ml_cameraDepthDragger"))
+            command = partial(jfunc.loadMlTool, "ml_cameraDepthDragger"))
         self.add_menu_item(sub, "ml_centerOfMass", 
             icon="ml_centerOfMass.png", 
-            command = partial(fun.loadMlTool, "ml_centerOfMass"))
+            command = partial(jfunc.loadMlTool, "ml_centerOfMass"))
         self.add_menu_item(sub, "ml_colorControl", 
             icon="ml_colorControl.png", 
-            command = partial(fun.loadMlTool, "ml_colorControl"))
+            command = partial(jfunc.loadMlTool, "ml_colorControl"))
         self.add_menu_item(sub, "ml_controlLibrary", 
             icon="ml_controlLibrary.png", 
-            command = partial(fun.loadMlTool, "ml_controlLibrary"))
+            command = partial(jfunc.loadMlTool, "ml_controlLibrary"))
         self.add_menu_item(sub, "ml_convertRotationOrder", 
             icon="ml_convertRotationOrder.png", 
-            command = partial(fun.loadMlTool, "ml_convertRotationOrder"))
+            command = partial(jfunc.loadMlTool, "ml_convertRotationOrder"))
         self.add_menu_item(sub, "ml_copyAnim", 
             icon="ml_copyAnim.png", 
-            command = partial(fun.loadMlTool, "ml_copyAnim"))
+            command = partial(jfunc.loadMlTool, "ml_copyAnim"))
         self.add_menu_item(sub, "ml_copySkin", 
             icon="ml_copySkin.png", 
-            command = partial(fun.loadMlTool, "ml_copySkin"))
+            command = partial(jfunc.loadMlTool, "ml_copySkin"))
         self.add_menu_item(sub, "ml_deleteKey", 
             icon="ml_deleteKey.png", 
-            command = partial(fun.loadMlTool, "ml_deleteKey"))
+            command = partial(jfunc.loadMlTool, "ml_deleteKey"))
         self.add_menu_item(sub, "ml_frameGraphEditor", 
             icon="ml_frameGraphEditor.png", 
-            command = partial(fun.loadMlTool, "ml_frameGraphEditor"))
+            command = partial(jfunc.loadMlTool, "ml_frameGraphEditor"))
         self.add_menu_item(sub, "ml_goToKeyframe", 
             icon="ml_goToKeyframe.png", 
-            command = partial(fun.loadMlTool, "ml_goToKeyframe"))
+            command = partial(jfunc.loadMlTool, "ml_goToKeyframe"))
         self.add_menu_item(sub, "ml_graphEditorMask", 
             icon="ml_graphEditorMask.png", 
-            command = partial(fun.loadMlTool, "ml_graphEditorMask"))
+            command = partial(jfunc.loadMlTool, "ml_graphEditorMask"))
         self.add_menu_item(sub, "ml_hold", 
             icon="ml_hold.png", 
-            command = partial(fun.loadMlTool, "ml_hold"))
+            command = partial(jfunc.loadMlTool, "ml_hold"))
         self.add_menu_item(sub, "ml_keyValueDragger", 
             icon="ml_keyValueDragger.png", 
-            command = partial(fun.loadMlTool, "ml_keyValueDragger"))
+            command = partial(jfunc.loadMlTool, "ml_keyValueDragger"))
         self.add_menu_item(sub, "ml_lockAndHideAttributes", 
             icon="ml_lockAndHideAttributes.png", 
-            command = partial(fun.loadMlTool, "ml_lockAndHideAttributes"))
+            command = partial(jfunc.loadMlTool, "ml_lockAndHideAttributes"))
         self.add_menu_item(sub, "ml_parentShape", 
             icon="ml_parentShape.png", 
-            command = partial(fun.loadMlTool, "ml_parentShape"))
+            command = partial(jfunc.loadMlTool, "ml_parentShape"))
         self.add_menu_item(sub, "ml_pivot", 
             icon="ml_pivot.png", 
-            command = partial(fun.loadMlTool, "ml_pivot"))
+            command = partial(jfunc.loadMlTool, "ml_pivot"))
         self.add_menu_item(sub, "ml_puppet", 
             icon="ml_puppet.png", 
-            command = partial(fun.loadMlTool, "ml_puppet"))
+            command = partial(jfunc.loadMlTool, "ml_puppet"))
         self.add_menu_item(sub, "ml_resetBind", 
             icon="ml_resetBind.png", 
-            command = partial(fun.loadMlTool, "ml_resetBind"))
+            command = partial(jfunc.loadMlTool, "ml_resetBind"))
         self.add_menu_item(sub, "ml_resetChannels", 
             icon="ml_resetChannels.png", 
-            command = partial(fun.loadMlTool, "ml_resetChannels"))
+            command = partial(jfunc.loadMlTool, "ml_resetChannels"))
         self.add_menu_item(sub, "ml_selectKeyed", 
             icon="ml_selectKeyed.png", 
-            command = partial(fun.loadMlTool, "ml_selectKeyed"))
+            command = partial(jfunc.loadMlTool, "ml_selectKeyed"))
         self.add_menu_item(sub, "ml_setKey", 
             icon="ml_setKey.png", 
-            command = partial(fun.loadMlTool, "ml_setKey"))
+            command = partial(jfunc.loadMlTool, "ml_setKey"))
         self.add_menu_item(sub, "ml_softWeights", 
             icon="ml_softWeights.png", 
-            command = partial(fun.loadMlTool, "ml_softWeights"))
+            command = partial(jfunc.loadMlTool, "ml_softWeights"))
         self.add_menu_item(sub, "ml_stopwatch", 
             icon="ml_stopwatch.png", 
-            command = partial(fun.loadMlTool, "ml_stopwatch"))
+            command = partial(jfunc.loadMlTool, "ml_stopwatch"))
         self.add_menu_item(sub, "ml_tangentWeight", 
             icon="ml_tangentWeight.png", 
-            command = partial(fun.loadMlTool, "ml_tangentWeight"))
+            command = partial(jfunc.loadMlTool, "ml_tangentWeight"))
         self.add_menu_item(sub, "ml_toggleVisibility", 
             icon="ml_toggleVisibility.png", 
-            command = partial(fun.loadMlTool, "ml_toggleVisibility"))
+            command = partial(jfunc.loadMlTool, "ml_toggleVisibility"))
         self.add_menu_item(sub, "ml_transferKeytimes", 
             icon="ml_transferKeytimes.png", 
-            command = partial(fun.loadMlTool, "ml_transferKeytimes"))
+            command = partial(jfunc.loadMlTool, "ml_transferKeytimes"))
         self.add_menu_item(sub, "ml_worldBake", 
             icon="ml_worldBake.png", 
-            command = partial(fun.loadMlTool, "ml_worldBake"))
+            command = partial(jfunc.loadMlTool, "ml_worldBake"))
 
 
 
@@ -684,12 +682,12 @@ class AnimShelf(builder.Builder):
          # Aaron Koressel Tools menu
         self.add_menu_item(p, "Aaron Koressel tools UI",   
                            icon = "", 
-                           command = fun.loadAckTool)
+                           command = jfunc.loadAckTool)
         
         # Wesley Chandler Tools
         self.add_menu_item(p, "Wesley Chandler Tools UI",    
                            icon = "", 
-                           command = fun.loadWesleyTool)
+                           command = jfunc.loadWesleyTool)
 
 
         # add sub_separator
@@ -699,7 +697,7 @@ class AnimShelf(builder.Builder):
         # Toolset
         self.add_menu_item(p, "PXO_toolset",  
                            icon = "", 
-                           command = fun.loadToolSet)
+                           command = jfunc.loadToolSet)
 
                 
         # # animbot
@@ -716,56 +714,56 @@ class AnimShelf(builder.Builder):
         cmds.menuItem(p= p, divider=True)
                          
         # Aaron Koressel Tools menu
-        self.add_menu_item(p, "Aaron Koressel tools Manual",  
+        self.add_menu_item(p, "Aaron Koressel tools Manual",
                            icon = "",
-                           command = partial(fun.openWebBrowser, info.ack_tools_url))
+                           command = partial(jfunc.openWebBrowser, jinfo.ack_tools_url))
                            
         # Morgan Loomis menu
-        self.add_menu_item(p, "Morgan Loomis tools Manual",  
+        self.add_menu_item(p, "Morgan Loomis tools Manual",
                            icon = "",
-                           command = partial(fun.openWebBrowser, info.ml_tools_url)) 
+                           command = partial(jfunc.openWebBrowser, jinfo.ml_tools_url))
 
 
 
         # bh Ghost
         self.add_menu_item(p, "bhGhost UI", icon = "bhGhost.png", 
-                           command = fun.loadBhGhost)
+                           command = jfunc.loadBhGhost)
         # Create Annotation
         self.add_menu_item(p, "Create annotation UI", icon = "", 
-                           command = fun.loadCreateAnnotateNode)
+                           command = jfunc.loadCreateAnnotateNode)
                            
         self.add_sub_separator()
         
         # bh speed
         self.add_menu_item(p, "bhSpeed UI", icon = "bhSpeed.png", 
-                           command = fun.loadBhSpeed)
+                           command = jfunc.loadBhSpeed)
         # Smear
         self.add_menu_item(p, "boSmear UI", icon = "", 
-                           command = fun.loadBoSmear)
+                           command = jfunc.loadBoSmear)
 
 
 
         ## Selector
         self.add_button("", icon = "pxoanim_shelf_select.png",
                           annotation = "Right-click selects all Keyed Controllers")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadSelectAllKeyed)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadSelectAllKeyed)
         p = cmds.popupMenu(b = 1)
         # Select all Keyed controllers
         self.add_menu_item(p, "Select all Keyed controllers (scene / selected asset)",  
                            icon = "", 
-                           command = fun.loadSelectAllKeyed)
+                           command = jfunc.loadSelectAllKeyed)
 
         self.add_sub_separator()
         
         # Select all controllers (current selection or all asset)
         self.add_menu_item(p, "Select all Controllers (scene / selected asset)",  
                            icon = "", 
-                           command = partial(fun.loadSelectAll, 'ctrl'))
+                           command = partial(jfunc.loadSelectAll, 'ctrl'))
 
         # Select geo
         self.add_menu_item(p, "Select all Geometries (scene / selected asset)",  
                            icon = "", 
-                           command = partial(fun.loadSelectAll, 'geo'))
+                           command = partial(jfunc.loadSelectAll, 'geo'))
 
         # # Select geo
         # self.add_menu_item(p, "Select all Cameras (scene / selected asset)",  
@@ -779,7 +777,7 @@ class AnimShelf(builder.Builder):
         
         # Select contraint
         self._disabled_add_menu_item(p, "Select Constraint", icon = "",
-                           command = fun.loadSelectConstraint)
+                           command = jfunc.loadSelectConstraint)
 
         self.add_sub_separator()
 
@@ -814,20 +812,20 @@ class AnimShelf(builder.Builder):
          #        "fitInsert", "fitReplace", "fitMerge"
         self.add_button("", icon = "pxoanim_shelf_copy.png", 
                         annotation = "Right-click copy all animation (A -> B)")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.segreto_anim_utils)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.segreto_anim_utils)
         p = cmds.popupMenu(b = 1)
         # copies animation from first selected node to second, including attribute channels
         self.add_menu_item(p, "Copy anim (A -> B)", 
                            icon = "", 
-                           command =  fun.segreto_anim_utils)
+                           command =  jfunc.segreto_anim_utils)
         # all Translation
         self.add_menu_item(p, "Copy translation anim (A -> B)",
                            icon = "", 
-                           command = partial(fun.segreto_anim_utils, attribute=['tx', 'ty', 'tz']))
+                           command = partial(jfunc.segreto_anim_utils, attribute=['tx', 'ty', 'tz']))
         # all rotation
         self.add_menu_item(p, "Copy rotation anim (A -> B)", 
                            icon = "", 
-                           command = partial(fun.segreto_anim_utils, attribute=['rx', 'ry', 'rz']))
+                           command = partial(jfunc.segreto_anim_utils, attribute=['rx', 'ry', 'rz']))
         # copy anim UI
         # self._disabled_add_menu_item(p, "Copy anim UI", 
         #                    icon = "", 
@@ -836,24 +834,24 @@ class AnimShelf(builder.Builder):
         ## MIRROR ANIMATION UI
         self.add_button("", icon = "pxoanim_shelf_mirror.png",
                         annotation = "Right-click open Mirror Animation tools UI")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadStudioLibrary)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadStudioLibrary)
         p = cmds.popupMenu(b = 1)
         # Mirror animation with Studio Library
         self.add_menu_item(p, "Studio Library UI",icon = "studioLibrary.png", 
-                           command = fun.loadStudioLibrary)
+                           command = jfunc.loadStudioLibrary)
         #  Mirror animation with PXO UI
         self._disabled_add_menu_item(p, "Mirror Animation tools UI",icon = "", 
-                           command = fun.loadStudioLibrary)
+                           command = jfunc.loadStudioLibrary)
 
         ## WALK HELPER
         self.add_button("", icon = "pxoanim_shelf_walkhelper.png",
                         annotation = "Right-click launches Sticky feet")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadStickyFeet)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadStickyFeet)
         p = cmds.popupMenu(b = 1)
         # Walk helper tool
         self.add_menu_item(p, "Sticky feet",   
                            icon = "", 
-                           command = fun.loadStickyFeet)
+                           command = jfunc.loadStickyFeet)
         # Path node
         self._disabled_add_menu_item(p, "Path Tool",   
                            icon = "", 
@@ -875,34 +873,34 @@ class AnimShelf(builder.Builder):
         ## SNAP
         self.add_button("", icon = "pxoanim_shelf_snap.png",
                         annotation = "Right-click snap all channels")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.snap_parent)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.snap_parent)
         p = cmds.popupMenu(b = 1)
         
         # snap all
         self.add_menu_item(p, "Snap all channels",  
                            icon = "", 
-                           command = fun.snap_parent)
+                           command = jfunc.snap_parent)
         # snap translation only
         self.add_menu_item(p, "Snap Translation",  
                         icon = "", 
-                           command = fun.snap_translate)
+                           command = jfunc.snap_translate)
         # snap rotation only
         self.add_menu_item(p, "Snap Rotation",  
                            icon = "", 
-                           command = fun.snap_rotate)
+                           command = jfunc.snap_rotate)
 
         self.add_sub_separator()
 
         # Snap tool UI
         self.add_menu_item(p, "Snap tool UI", 
                            icon = "pxoanim_shelf_snap.png", 
-                           command = fun.loadAlignTool)
+                           command = jfunc.loadAlignTool)
         # animSnap
         self.add_menu_item(p, "animSnap UI", icon = "", 
-                           command = fun.loadAnimSnap)
+                           command = jfunc.loadAnimSnap)
         # Match Placement
         self.add_menu_item(p, "Match Placement UI", icon = "", 
-                           command = fun.loadGbMatchPlacement)
+                           command = jfunc.loadGbMatchPlacement)
 
         # snap Selected channels
         # self._disabled_add_menu_item(p, "Snap selected channels",  
@@ -914,84 +912,84 @@ class AnimShelf(builder.Builder):
         ## Constraint UI
         self.add_button(label= "", icon = "pxoanim_shelf_constraint.png",
                         annotation = "Right-click open Easy Constraint UI",
-                        command = fun.loadEasyParentUI)
-        p = cmds.popupMenu(b = 3, postMenuCommand = partial(fun.loadEasyParentUI, 'UI', ''))
+                        command = jfunc.loadEasyParentUI)
+        p = cmds.popupMenu(b = 3, postMenuCommand = partial(jfunc.loadEasyParentUI, 'UI', ''))
         p = cmds.popupMenu(b = 1)
         # Constraint UI
         self.add_menu_item(p, "Easy Constraint UI",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'UI', ''))
+                           command = partial(jfunc.loadEasyParentUI, 'UI', ''))
         self.add_sub_separator()
         # parent constraint with offset
         self.add_menu_item(p, "parent constraint offset",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'parenting', True))
+                           command = partial(jfunc.loadEasyParentUI, 'parenting', True))
         # parent constraint without offset
         self.add_menu_item(p, "parent constraint snap",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'parenting', False))
+                           command = partial(jfunc.loadEasyParentUI, 'parenting', False))
         # orientation constraint with offset
         self.add_menu_item(p, "orientation constraint offset",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'orienting', True))
+                           command = partial(jfunc.loadEasyParentUI, 'orienting', True))
         # orientation constraint without offset
         self.add_menu_item(p, "orientation constraint snap",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'orienting', False))
+                           command = partial(jfunc.loadEasyParentUI, 'orienting', False))
         # point (selected nodes to Specific Point on Geo with offset)
         self.add_menu_item(p, "point constraint offset",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'pointing', True))
+                           command = partial(jfunc.loadEasyParentUI, 'pointing', True))
         # point (selected nodes to specific Point on geo without offset)
         self.add_menu_item(p, "point constraint snap",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'pointing', False))
+                           command = partial(jfunc.loadEasyParentUI, 'pointing', False))
         # Rivet (with offset)
         self.add_menu_item(p, "Rivet offset",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'rivet', True))
+                           command = partial(jfunc.loadEasyParentUI, 'rivet', True))
         # point (snap)
         self.add_menu_item(p, "Rivet snap",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'rivet', False))
+                           command = partial(jfunc.loadEasyParentUI, 'rivet', False))
                          
         self.add_sub_separator()
         
         # unparenting
         self.add_menu_item(p, "kill constraint (selected objects)",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'unparenting', ''))
+                           command = partial(jfunc.loadEasyParentUI, 'unparenting', ''))
         # unparenting
         self.add_menu_item(p, "kill constraint (all scene)",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'killConst', ''))
+                           command = partial(jfunc.loadEasyParentUI, 'killConst', ''))
         # bakeAnim
         self.add_menu_item(p, "bake Anim and delete constraint",  
                            icon = "", 
-                           command = partial(fun.loadEasyParentUI, 'bakeAnim', ''))
+                           command = partial(jfunc.loadEasyParentUI, 'bakeAnim', ''))
 
 
 
         ## Space switch
         self.add_button("", icon = "pxoanim_shelf_spaceswitch.png",
                         annotation = "Right-click open segretoLocinate")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadLocinate)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadLocinate)
         p = cmds.popupMenu(b = 1)
         # Locinate made by Julien Segreto
         self.add_menu_item(p, "segretoLocinate",  
                            icon = "locator.png", 
-                           command = fun.loadLocinate)
+                           command = jfunc.loadLocinate)
         # open morgan Loomis world bakerUI
         self.add_menu_item(p, "ml_world Bake", 
                            icon = "ml_worldBake.png", 
-                           command = fun.loadWorldBaker)
+                           command = jfunc.loadWorldBaker)
                          
         self.add_sub_separator()
         
         # open morgan Loomis rotation order UI
         self.add_menu_item(p, "ml_convert Rotation Order", 
                            icon = "ml_convertRotationOrder.png", 
-                           command = fun.loadRotationOrderSwitch)
+                           command = jfunc.loadRotationOrderSwitch)
 
 
 
@@ -1020,42 +1018,42 @@ class AnimShelf(builder.Builder):
         ## EDIT ANIM CURVE UI
         self.add_button("", icon = "pxoanim_shelf_curve.png",
                         annotation = "Right-click open Segreto_Shift Keys UI")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadSegretoShiftKeyUI)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadSegretoShiftKeyUI)
         p = cmds.popupMenu(b = 1)
         # Shift Keys
         self.add_menu_item(p, "Segreto_Shift Keys UI", icon = "", 
-                           command = fun.loadSegretoShiftKeyUI)
+                           command = jfunc.loadSegretoShiftKeyUI)
 
         self.add_sub_separator()
         
         # Keyframe reduction UI
         self.add_menu_item(p, "Keyframe Reduction UI", icon = "keyframeReduction.png", 
-                           command = fun.loadKeyframeReduction)
+                           command = jfunc.loadKeyframeReduction)
         # clean redundant keys
         self.add_menu_item(p, "ackDeleteRedundantKeys ",icon = "", 
-                           command = fun.loadAckDeleteRedundant)
+                           command = jfunc.loadAckDeleteRedundant)
 
         self.add_sub_separator()
         
         # Tween machine
         self.add_menu_item(p, "Tween Machine UI",    
                            icon = "tweenMachine.png", 
-                           command = fun.loadTweenMachine)
+                           command = jfunc.loadTweenMachine)
                            
         # Scale anim curve
         self.add_menu_item(p, "np_curve Local Scale UI", icon = "", 
-                           command = fun.loadNP_curveLocalScale)
+                           command = jfunc.loadNP_curveLocalScale)
         
         # Smooth anim curve
         self.add_menu_item(p, "KTL_smooth Key", icon = "", 
-                           command = fun.loadKTL_smoothKey)
+                           command = jfunc.loadKTL_smoothKey)
         # Smooth Key
         self.add_menu_item(p, "oaSmooth Key", icon = "", 
-                           command = fun.loadOaSmoothKeys)
+                           command = jfunc.loadOaSmoothKeys)
         self.add_sub_separator()
         # ar Shake
         self.add_menu_item(p, "arShaker UI", icon = "arShake.png", 
-                           command = fun.loadArShake)
+                           command = jfunc.loadArShake)
         # Fix subframes
         self._disabled_add_menu_item(p, "fix subframes ",   
                            icon = "", 
@@ -1067,11 +1065,11 @@ class AnimShelf(builder.Builder):
         ## RETIME
         self.add_button("", icon = "pxoanim_shelf_retime.png",
                         annotation = "Right-click open Segreto_Shift Keys UI")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadSegretoShiftKeyUI)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadSegretoShiftKeyUI)
         p = cmds.popupMenu(b = 1)
         # Shift Keys
         self.add_menu_item(p, "Segreto_Shift Keys UI", icon = "", 
-                           command = fun.loadSegretoShiftKeyUI)
+                           command = jfunc.loadSegretoShiftKeyUI)
         # Retime node
         self._disabled_add_menu_item(p, "Create retime node",   
                            icon = "", 
@@ -1086,24 +1084,24 @@ class AnimShelf(builder.Builder):
         ## Motion trail tools
         self.add_button("", icon = "pxoanim_shelf_motiontrail.png",
                         annotation = "Right-click open Advanced Motion Trail UI")
-        p = cmds.popupMenu(b = 3, postMenuCommand = fun.loadEasyMotionTrailUI)
+        p = cmds.popupMenu(b = 3, postMenuCommand = jfunc.loadEasyMotionTrailUI)
         p = cmds.popupMenu(b = 1)
 
         # Simple Motion trail UI
         self.add_menu_item(p, "ml_arc Tracer UI", 
                            icon = "ml_arcTracer.png", 
-                           command = fun.loadEasyMotionTrailUI)
+                           command = jfunc.loadEasyMotionTrailUI)
         
         
         # Simple Motion trail UI
         self.add_menu_item(p, "ml_arc Tracer UI", 
                            icon = "ml_arcTracer.png", 
-                           command = fun.loadMlArcTracer)
+                           command = jfunc.loadMlArcTracer)
         
         # AdvaNCED Motion trail UI
         self.add_menu_item(p, "Advanced Motion Trail UI",   
                            icon = "", 
-                           command = fun.loadAdvancedMotionTrailUI)
+                           command = jfunc.loadAdvancedMotionTrailUI)
 
         ## DYNAMIC
         self.add_button("", icon = "pxoanim_shelf_dynamics.png",
@@ -1113,7 +1111,7 @@ class AnimShelf(builder.Builder):
         # Speedometer
         self.add_menu_item(p, "Speedometer UI",   
                            icon = "", 
-                           command = fun.loadSpeedometer)
+                           command = jfunc.loadSpeedometer)
         # Retime node
         self._disabled_add_menu_item(p, "Dynamic Overlap Tool UI",   
                            icon = "", 
@@ -1125,11 +1123,11 @@ class AnimShelf(builder.Builder):
         # Ballistic animation
         self.add_menu_item(p, "ml_ballistic Animation", 
                            icon = "ml_ballisticAnimation.png", 
-                           command = fun.loadBallisticAnimation)
+                           command = jfunc.loadBallisticAnimation)
         # Distance o meter
         self.add_menu_item(p, "Distance-o-meter",  
                            icon = "", 
-                           command = fun.loadDistanceMeter)
+                           command = jfunc.loadDistanceMeter)
 
 
         # ## viewport
@@ -1155,9 +1153,9 @@ class AnimShelf(builder.Builder):
         self.add_separator()
                       
         ## WIKI
-        self.add_button(label= "",annotation = "WIKI" , 
-                      icon = "wiki.png", 
-                      command = partial(fun.openWebBrowser, info.wiki_url))
+        self.add_button(label= "", annotation = "WIKI",
+                        icon = "wiki.png",
+                        command = partial(jfunc.openWebBrowser, jinfo.wiki_url))
                 
         
         self.add_separator()

@@ -13,6 +13,7 @@ set "PIPELINEPATH=%PROJECT_ROOT%\dev"
 :: Variable used locally created for readability.
 set "modules=%PIPELINEPATH%\modules"
 set "ml_tools=%PIPELINEPATH%\modules\ml_tools"
+set "juls_tools=%PIPELINEPATH%\modules\juls_tools"
 set "plug-ins=%PIPELINEPATH%\plug-ins"
 set "shelves=%PIPELINEPATH%\shelves"
 set "packages=%PIPELINEPATH%\packages"
@@ -29,7 +30,7 @@ set "PYTHONPATH=%python%"
 set "MAYA_SCRIPT_PATH=%mel%"
 
 :: --- MODULES ---
-set "MAYA_MODULE_PATH=%modules%;%ml_tools%;%MAYA_MODULE_PATH%"
+set "MAYA_MODULE_PATH=%modules%;%ml_tools%;%juls_tools%;%MAYA_MODULE_PATH%"
 
 :: --- PLUG-INS ---
 set "MAYA_PLUG_IN_PATH=%plug-ins%;%MAYA_PLUG_IN_PATH%"

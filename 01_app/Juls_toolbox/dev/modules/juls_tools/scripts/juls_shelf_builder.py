@@ -1,8 +1,8 @@
-'''builder.py'''
+'''juls_shelf_builder.py'''
 
 import maya.cmds as cmds
 
-from . import info
+from . import juls_shelf_info
 
 
 

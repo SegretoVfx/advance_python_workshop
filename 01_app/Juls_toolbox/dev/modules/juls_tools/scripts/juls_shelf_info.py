@@ -1,4 +1,4 @@
-'''info.py'''
+'''juls_shelf_info.py'''
 
 
 shelf_name = "Juls_anim"
