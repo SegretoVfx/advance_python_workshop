@@ -2,11 +2,10 @@ import maya.utils
 
 
 def custom_import():
-    # import j_animShelf
+    print("Hello from userSetup")
+    import j_animShelf
     import juls_anim_shelf
 
-    print("Hello World")
-    # j_animShelf
     juls_anim_shelf.AnimShelf()
 
 
