@@ -2,7 +2,7 @@
 :: MAYA
 
 :: --- VARIABLES ---
-:: Variable used localy created for readability.
+:: Variable used locally created for readability.
 set "dev=dev"
 set "modules=modules"
 set "plugins=plugins"
@@ -14,7 +14,7 @@ set "py=py"
 set "mel=mel"
 :: Path for the current project.
 set "MASTER_ROOT=P:\PYTHON\advance_python_workshop\01_app"
-set "PROJECT_NAME=Juls_toolbox"
+set "PROJECT_NAME=workshop_assignment"
 
 :: --- PATHS ---
 :: Variables setting up the paths to the tree hierarchy.
@@ -51,3 +51,6 @@ if not exist %package% md %package%
 :: --- SPLASHSCREEN ---
 set "icons=%PIPELINEPATH%\%icons%"
 if not exist %icons% md %icons%
+
+
+exit

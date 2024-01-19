@@ -1,0 +1,6 @@
+. how to use the %1 to open a file when launching Maya?
+- why is there a PATH variable set three times in the file although we don't use it?
+- The PYTHONPATH variable is set once then %SOFTWARE% var is added, then PIPELINE again?
+- Is project root the project forlder for the movie or is it the pipeline root folder?
+
+- 

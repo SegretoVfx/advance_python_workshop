@@ -1,3 +1,21 @@
+# SHELF  **************************************************************
+# Description   = This creates the class needed for the shelf creation
+# functions.
+#
+# File name     = juls_shelf_builder.py
+# Date of birth = 1/10/2024
+#
+# Autor   = Juls
+# Email   = segretovfx@gmail.com
+#
+# Usage = This will work only if used with this three other files:
+#         juls_shelf_builder
+#         juls_shelf_functions
+#         juls_shelf_info
+#
+# *********************************************************************
+
+
 # Import third-party modules
 import maya.cmds as cmds
 import pymel.core as pmc

@@ -1,8 +1,27 @@
+# SHELF BUILDER **************************************************************
+# Description   = This creates the class needed for the shelf creation
+# functions.
+#
+# File name     = juls_shelf_builder.py
+# Date of birth = 1/10/2024
+#
+# Author   = Juls
+# Email   = segretovfx@gmail.com
+#
+# Usage = This will work only if used with this three other files:
+#         juls_shelf_builder
+#         juls_shelf_functions
+#         juls_shelf_info
+#
+# *********************************************************************
+
+
+
 '''juls_shelf_builder.py'''
 
 import maya.cmds as cmds
 
-from . import juls_shelf_info
+import juls_shelf_info
 
 
 
@@ -15,7 +34,7 @@ class Builder():
     '''Class to build different shelves buttons and separators
     the use of these buttons is done within the "CustomShelf" class.'''
 
-    def __init__(self, name=info.shelf_name, iconPath=""):
+    def __init__(self, name=juls_shelf_info.shelf_name, iconPath=""):
         self.name = name
 
         self.iconPath = iconPath

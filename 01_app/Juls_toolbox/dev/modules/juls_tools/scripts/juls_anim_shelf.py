@@ -1,22 +1,26 @@
-'''
-juls_anim_shelf.py
 
+# JULS SHELF **************************************************************
+# Description   = Launch the process to create the juls_anim_shelf
+#                 This script will be launched by the userSetup.py file
+#                 located in the same script folder
+#
+# File name     = juls_anim_shelf.py
+# Date of birth = 1/10/2024
+#
+# Author  = Juls
+# Email   = segretovfx@gmail.com
+#
+# Based on the script from
+# https://bindpose.com/scripting-custom-shelf-in-maya-python/
+# Using tones of scripts from the internet
+#
+# Usage = This will work only if used with this three other files:
+#          juls_shelf_builder
+#          juls_shelf_functions
+#          juls_shelf_info
+#
+# *********************************************************************
 
-Description:
-animation shelf generator
-This script will be launched by the userSetup.py file 
-located in the same script folder
-    
-Author:
-Julien Segreto 
-
-Based on the script from 
-https://bindpose.com/scripting-custom-shelf-in-maya-python/ 
-Using tones of scripts from the internet
-
-Release:
-Feb 2022
-'''
 
 
 import maya.cmds as cmds
@@ -24,9 +28,9 @@ import maya.cmds as cmds
 from functools import partial
 
 
-from . import juls_shelf_builder as jbuild
-from . import juls_shelf_functions as jfunc
-from . import juls_shelf_info as jinfo
+import juls_shelf_builder as jbuild
+import juls_shelf_functions as jfunc
+import juls_shelf_info as jinfo
 
 import importlib
 

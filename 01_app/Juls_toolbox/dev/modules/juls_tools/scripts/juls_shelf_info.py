@@ -1,4 +1,19 @@
-'''juls_shelf_info.py'''
+# SHELF INFO **************************************************************
+# Description   = This creates the class needed for the shelf creation
+# functions.
+#
+# File name     = juls_shelf_builder.py
+# Date of birth = 1/10/2024
+#
+# Author  = Juls
+# Email   = segretovfx@gmail.com
+#
+# Usage = This will work only if used with this three other files:
+#         juls_shelf_builder
+#         juls_shelf_functions
+#         juls_shelf_info
+#
+# *********************************************************************
 
 
 shelf_name = "Juls_anim"
