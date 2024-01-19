@@ -1,56 +1,34 @@
+:: --- BUILD PIPELINE STRUCTURE ---
 @echo off
-:: MAYA
-
-:: --- VARIABLES ---
-:: Variable used locally created for readability.
-set "dev=dev"
-set "modules=modules"
-set "plugins=plugins"
-set "shelf=shelf"
-set "packages=packages"
-set "icons=icons"
-set "scripts=scripts"
-set "py=py"
-set "mel=mel"
-:: Path for the current project.
-set "MASTER_ROOT=P:\PYTHON\advance_python_workshop\01_app"
-set "PROJECT_NAME=workshop_assignment"
+:: PIPELINE
 
 :: --- PATHS ---
-:: Variables setting up the paths to the tree hierarchy.
-set "PROJECT_ROOT=%MASTER_ROOT%\%PROJECT_NAME%"
-set "PIPELINEPATH=%PROJECT_ROOT%\%dev%"
-if not exist %PIPELINEPATH% md %PIPELINEPATH%
+set "PIPELINE_ROOT=P:\PYTHON\advance_python_workshop\01_app"
+set "PIPELINE_NAME=workshop_assignment"
 
-:: --- ENVIRONMENT VAR ---
-:: Adding the project's path to the environment variables.
-:: --- PYTHON ---
-set "script_py=%PIPELINEPATH%\%scripts%\%py%"
-if not exist %script_py% md %script_py%
+set "PIPELINE_PATH=%PIPELINE_ROOT%\%PIPELINE_NAME%\dev"
+if not exist %PIPELINE_PATH% md %PIPELINE_PATH%
 
-:: --- MEL SCRIPTS ---
-set "script_mel=%PIPELINEPATH%\%scripts%\%mel%"
-if not exist %script_mel% md %script_mel%
+:: --- VARIABLES ---
+:: CREATE folder tree inside the PIPELINE_NAME root folder if not exists.
+set "MODULES=%PIPELINE_PATH%\modules"
+if not exist %MODULES% md %MODULES%
 
-:: --- MODULES ---
-set "modules=%PIPELINEPATH%\%modules%"
-if not exist %modules% md %modules%
+set "PLUG-INS=%PIPELINE_PATH%\plug-ins"
+if not exist %PLUG-INS% md %PLUG-INS%
 
-:: --- PLUGINS ---
-set "plugins=%PIPELINEPATH%\%plugins%"
-if not exist %plugins% md %plugins%
+set "SHELVES=%PIPELINE_PATH%\shelves"
+if not exist %SHELVES% md %SHELVES%
 
-:: --- SHELF ---
-set "shelf=%PIPELINEPATH%\%shelf%"
-if not exist %shelf% md %shelf%
+set "PACKAGES=%PIPELINE_PATH%\packages"
+if not exist %PACKAGES% md %PACKAGES%
 
-:: --- PACKAGES ---
-set "package=%PIPELINEPATH%\%packages%"
-if not exist %package% md %package%
+set "IMG=%PIPELINE_PATH%\img"
+if not exist %IMG% md %IMG%
 
-:: --- SPLASHSCREEN ---
-set "icons=%PIPELINEPATH%\%icons%"
-if not exist %icons% md %icons%
-
+set "PYTHON=%PIPELINE_PATH%\scripts\py"
+if not exist %PYTHON% md %PYTHON%
+set "MEL=%PIPELINE_PATH%\scripts\mel"
+if not exist %MEL% md %MEL%
 
 exit
