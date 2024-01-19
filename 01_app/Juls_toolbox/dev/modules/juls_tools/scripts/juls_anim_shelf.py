@@ -28,7 +28,7 @@ import maya.cmds as cmds
 from functools import partial
 
 
-# import juls_shelf_functions as jfunc
+import juls_shelf_functions as jfunc
 import juls_shelf_builder as jbuild
 import juls_shelf_info as jinfo
 
