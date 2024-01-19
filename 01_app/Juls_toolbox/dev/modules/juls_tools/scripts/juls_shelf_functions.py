@@ -18,7 +18,5 @@ import maya.cmds as cmds
 print("Hello from shelf functions")
 
 
-def loadChangeContext(*args):
-    # from change_context.apps import maya_entry_point;
-    # maya_entry_point.main()', 'change_context'
-    print("Rock on MF")
+def open_scene(*args):
+    from funclib import scene_load

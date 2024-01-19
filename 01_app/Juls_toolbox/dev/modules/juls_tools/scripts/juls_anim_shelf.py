@@ -32,6 +32,7 @@ import juls_shelf_functions as jfunc
 import juls_shelf_builder as jbuild
 import juls_shelf_info as jinfo
 
+
 importlib.reload(jbuild)
 importlib.reload(jfunc)
 importlib.reload(jinfo)
@@ -44,5 +45,5 @@ class AnimShelf(jbuild.Builder):
             label="",
             annotation="Open Scene UI",
             icon="juls_toolbox_shelf_open.png",
-            command=partial(asf.loadSaveTool, "load"),
+            command=partial(jfunc..loadSaveTool, "load"),
         )
