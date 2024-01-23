@@ -3,3 +3,5 @@
 *.pyc
 *.log
 
+.venv/pyvenv.cfg
+.venv/Scripts/mayapy.exe

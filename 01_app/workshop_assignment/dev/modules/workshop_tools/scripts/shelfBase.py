@@ -25,7 +25,7 @@ from functools import partial
 curScriptDir = path.dirname(__file__)
 print("The scripts are located in : {0}".format(curScriptDir))
 
-shelfName = "workshop_shelf"
+shelfName = "ws_anim_shelf"
 
 # URL OF THE WIKI
 ar_url = "https://www.alexanderrichtertd.com/"
@@ -138,26 +138,12 @@ class _shelf:
 
 class customShelf(_shelf):
     def build(self):
-        # self.add_button(label="button1")
-        # self.add_button("button2")
-        # self.add_button("popup")
-        # p = cmds.popupMenu(b=1)
-        # self.add_menu_item(p, "popupMenuItem1")
-        # self.add_menu_item(p, "popupMenuItem2")
-        # sub = self.add_sub_menu(p, "subMenuLevel1")
-        # self.add_menu_item(sub, "subMenuLevel1Item1")
-        # sub2 = self.add_sub_menu(sub, "subMenuLevel2")
-        # self.add_menu_item(sub2, "subMenuLevel2Item1")
-        # self.add_menu_item(sub2, "subMenuLevel2Item2")
-        # self.add_menu_item(sub, "subMenuLevel1Item2")
-        # self.add_menu_item(p, "popupMenuItem3")
-        # self.add_button("button3")
 
         ## SAVE Local
         self.add_button(
             label="",
             annotation="Open Scene UI",
-            icon="juls_toolbox_shelf_open.png",
+            icon="ws_anim_shelf_open.png",
             command="",
         )
 
@@ -165,7 +151,7 @@ class customShelf(_shelf):
         self.add_button(
             label="",
             annotation="Save scene",
-            icon="juls_toolbox_shelf_saveLocal.png",
+            icon="ws_anim_shelf_saveLocal.png",
             command="",
         )
 
@@ -173,14 +159,14 @@ class customShelf(_shelf):
         self.add_button(
             label="",
             annotation="Save increment scene",
-            icon="juls_toolbox_shelf_saveSG.png",
+            icon="ws_anim_shelf_saveSG.png",
             command="",
         )
 
         ## LOAD
         self.add_button(
             "",
-            icon="juls_toolbox_shelf_import.png",
+            icon="ws_anim_shelf_import.png",
             annotation="Right-click open Scene Content UI",
         )
         #  RMB open most used option
@@ -197,7 +183,7 @@ class customShelf(_shelf):
         self.add_menu_item(
             p,
             "Shotgun Loader UI",
-            icon="juls_toolbox_shelf_SG.png",
+            icon="ws_anim_shelf_SG.png",
             command="",
         )
 

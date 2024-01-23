@@ -4,3 +4,16 @@
 - Is project root the project forlder for the movie or is it the pipeline root folder?
 
 - 
+
+
+Being a TD is to be a great problem solver,
+
+- monday watch videos and start assignment
+- next saturday join Q&A
+- next week sunday upload your assignment
+- assignment feedback
+
+
+
+git stash to save a branch without having to commit it
+
