@@ -1,29 +1,24 @@
-# WORKSHOP TOOL **************************************************************
-# Description   = Workshop assignment is a Python package to generate a Maya shelf providing a
-# list of useful tools.
-# The shelf will be recreated from scratch at every start of Maya to insure a clear and updated version of every tool.
-# This shelf is created for training purpose and doesn't come with any guaranty.
-# Workshop : https://www.alexanderrichtertd.com/
+# ------------------------------------------------------------
+# --- SHElF BUILDER ---
+# Description   = Class used to create the custom shelf
 #
-# File name     = shelfBase.py
-# Date of birth = 1/19/2024
+# Date   = 2024 - 01 - 23
+# Author = Juls
+# Email  = segretovfx@gmail.com
 #
-# Author  = Juls
-# Email   = segretovfx@gmail.com
-#
-# Usage = It'll be autolaunched when Maya starts
-#
-# *********************************************************************
+# Usage = The class need to be imported in the cshelf_creator
+#         file. All the modules are needed to generated the
+#         shelf buttons.
+#         The shelf will be recreated from scratch at every
+#         start of Maya to insure a clear and updated version of every tool.
+#         This shelf is created for training purpose only.
+# ------------------------------------------------------------
 
 
 import maya.cmds as cmds
 
 
-
 shelf_name = "ws_anim_shelf"
-
-# URL OF THE WIKI
-ar_url = "https://www.alexanderrichtertd.com/"
 
 
 def _null(*args):

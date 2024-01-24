@@ -1,54 +1,68 @@
-
-# SHELF CLASS **************************************************************
+# ------------------------------------------------------------
+# --- ANIM SHELF CREATOR ---
 # Description   = The class to adapt for the shelf creation
-# 
-# Date of birth = 2024-01-22
-# 
-# Author  = Juls
-# Email   = segretovfx@gmail.com
-# 
+#
+# Date   = 2024 - 01 - 23
+# Author = Juls
+# Email  = segretovfx@gmail.com
+#
 # Usage = This classe need the ShelfBuilder module to be imported.
-# 
-# ********************************************************************* 
+# ------------------------------------------------------------
+
 
 import Shelf_Builder
 import maya.cmds as cmds
 import anim_shelf_functions as animfunc
- 
+
 from functools import partial
 
 
 class AnimShelf(Shelf_Builder.Builder):
     def build(self):
-
-        ## SAVE Local
+        # --- open file ---
         self.add_button(
             label="",
             annotation="Open Scene UI",
-            icon="ws_anim_shelf_open.png",
-            command="self.animfunc.open_scene",
+            icon="ws_shelf_open.png",
+            command=animfunc.open_scene,
         )
 
-        ## SAVE Local
+        # --- save ---
         self.add_button(
             label="",
             annotation="Save scene",
-            icon="ws_anim_shelf_saveLocal.png",
-            command="",
+            icon="ws_shelf_saveLocal.png",
+            command=animfunc.save_scene,
+        )
+
+        # --- save as ---
+        self.add_button(
+            label="",
+            annotation="save scene as UI",
+            icon="ws_shelf_saveAs.png",
+            command=animfunc.save_scene_as,
+        )
+
+        # --- save increment ---
+        self.add_button(
+            label="",
+            annotation="Incremental save scene",
+            icon="ws_shelf_saveIncrement.png",
+            command=animfunc.save_scene_increment,
         )
 
         ## SAVE
         # self.add_button(
         #     label="",
         #     annotation="Save increment scene",
-        #     icon="ws_anim_shelf_saveSG.png",
+        #     icon="ws_shelf_saveSG.png",
         #     command="",
         # )
 
         ## LOAD
         self.add_button(
             "",
-            icon="ws_anim_shelf_import.png",
+            icon="ws_shelf_import.png",
             annotation="Right-click open Scene Content UI",
         )
         #  RMB open most used option
@@ -65,7 +79,7 @@ class AnimShelf(Shelf_Builder.Builder):
         self.add_menu_item(
             p,
             "Shotgun Loader UI",
-            icon="ws_anim_shelf_SG.png",
+            icon="ws_shelf_SG.png",
             command="",
         )
 

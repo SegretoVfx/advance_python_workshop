@@ -1,4 +1,4 @@
-# Juls_toolbox
+# workshop assignment
 
 ## Table of Contents
 1. [Description](#description)
@@ -9,8 +9,11 @@
 
 ## Description
 ***
-Juls_toolbox is a Python package to generate a Maya shelf providing a list of useful tools. 
-The shelf will be recreated from scratch at every start of Maya to insure a clear and updated version of every tool.
+Package of tools for Maya. 
+
+Creation of a shelf at every start of Maya to insure a clear and updated version of every tool.
+This shelf is created for training purpose and doesn't come with any guaranty.
+Workshop : https://www.alexanderrichtertd.com/
 
 ## Installation
 ***
