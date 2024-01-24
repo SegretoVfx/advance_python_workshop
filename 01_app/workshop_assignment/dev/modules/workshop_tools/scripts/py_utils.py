@@ -37,6 +37,11 @@ def unload_module(pkg, *Args):
         sys.modules.pop(name)
 
 
-def import_module(pkg_path, pkg, *Args):
-    importlib.import_module(f"{pkg_path}.{pkg}")
-    importlib.reload(f"{pkg_path}.{pkg}")
+def import_module(pkg, pkg_path=None, *Args):
+    if pkg_path is None:
+        pass
+        # importlib.import_module(f"{pkg}")
+        # importlib.reload(f"{pkg}")
+    else:
+        importlib.import_module(f"{pkg_path}.{pkg}")
+        importlib.reload(f"{pkg_path}.{pkg}")

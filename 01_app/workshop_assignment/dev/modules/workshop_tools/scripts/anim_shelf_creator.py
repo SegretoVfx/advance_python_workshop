@@ -19,9 +19,9 @@ from functools import partial
 
 class AnimShelf(Shelf_Builder.Builder):
     def build(self):
-        #------------------------------------------------------------
+        # ------------------------------------------------------------
         # --- FILE ---
-        
+
         # --- open file ---
         self.add_button(
             label="",
@@ -54,16 +54,24 @@ class AnimShelf(Shelf_Builder.Builder):
             command=animfunc.save_scene_increment,
         )
 
+        self.add_separator()
 
-        self.add_sub_separator()
+        # ------------------------------------------------------------
+        # --- TOOLS ---
 
-        # update all reference in the scene
-        self.add_menu_item(p, "Update All Referenced Assets", icon="", command="")
+        # --- wes anim tools ---
+        # --- save increment ---
+        # self.add_button(
+        #     label="",
+        #     annotation="Open Wes Anim Tools",
+        #     icon="ws_shelf_tools.png",
+        #     command=animfunc.save_scene_increment,
+        # )
 
         ## LOAD
         self.add_button(
             "",
-            icon="ws_shelf_import.png",
+            icon="ws_shelf_tools.png",
             annotation="Right-click open Scene Content UI",
         )
         #  RMB open most used option
@@ -71,33 +79,32 @@ class AnimShelf(Shelf_Builder.Builder):
         # LMB will open a sub menu
         p = cmds.popupMenu(b=1)
         # Scene content
-        self.add_menu_item(p, "Scene Content UI", icon="", command="")
+        self.add_menu_item(
+            p,
+            "Wes anim tools",
+            icon="",
+            command=animfunc.launch_wes_tools,
+        )
         # asset loader
-        self.add_menu_item(p, "Asset Loader", icon="", command="")
+        self.add_menu_item(
+            p,
+            "Asset Loader",
+            icon="",
+            command="",
+        )
         # Cache loader
-        self.add_menu_item(p, "Cache Loader UI", icon="", command="")
+        self.add_menu_item(
+            p,
+            "Cache Loader UI",
+            icon="",
+            command="",
+        )
         # Shotgun Loader
         self.add_menu_item(
             p,
             "Shotgun Loader UI",
-            icon="ws_shelf_SG.png",
+            icon="ws_anim_shelf_SG.png",
             command="",
-        )
-        self.add_sub_separator()
-
-        # update all reference in the scene
-        self.add_menu_item(p, "Update All Referenced Assets", icon="", command="")
-        
-        #------------------------------------------------------------
-        # --- TOOLS ---
-        
-        # --- wes anim tools ---
-                # --- save increment ---
-        self.add_button(
-            label="",
-            annotation="Open Wes Anim Tools",
-            icon="ws_shelf_tools.png",
-            command=animfunc.save_scene_increment,
         )
 
 

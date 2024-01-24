@@ -67,6 +67,9 @@ set "PATH=%MAYA_PATH%\bin;%PATH%"
 
 :: --- CALL MAYA ---
 :: Launch Maya inside the current environment.
+:: Close the current instance of maya
+taskkill /IM maya.exe /F
+
 if "%1"=="" (
   start "" "maya.exe"
 ) else (

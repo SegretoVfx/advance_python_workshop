@@ -10,10 +10,16 @@
 # ------------------------------------------------------------
 
 import maya.cmds as cmds
-import maya_utils as utils
+import maya_utils
+import py_utils
+
+import importlib
 
 
 print("Hello from shelf functions")
+
+# ------------------------------------------------------------
+# --- FILE ---
 
 
 def open_scene(*args):
@@ -34,13 +40,13 @@ def save_scene_increment(*args):
     If not, it will be generated,
     If the scene hadn't been saved a default name will be set.
     """
-    file_ext = utils.get_cur_scn_ext()
-    raw_name = utils.get_cur_scn_raw_name()
-    file_name = utils.get_cur_scn_file_name()
-    old_version = utils.get_cur_scn_version()
-    split_sc_name = utils.split_cur_scn_name()
+    file_ext = maya_utils.get_cur_scn_ext()
+    raw_name = maya_utils.get_cur_scn_raw_name()
+    file_name = maya_utils.get_cur_scn_file_name()
+    old_version = maya_utils.get_cur_scn_version()
+    split_sc_name = maya_utils.split_cur_scn_name()
 
-    if file_name is not "":
+    if file_name == "":
         if old_version is None:
             new_version = "001"
             new_name = f"{raw_name}_{new_version}"
@@ -65,3 +71,17 @@ def save_scene_increment(*args):
     # from scripts.segretoTools import segretoEasyMotionTrail
     # importlib.reload(segretoEasyMotionTrail)
     # segretoEasyMotionTrail.main()
+
+
+# ------------------------------------------------------------
+# --- TOOLS ---
+
+
+# --- wes tools ---
+def launch_wes_tools(*args):
+    """Open the wes tool window
+    There is a lot of usefull tools available there.
+    """
+    wes = importlib.import_module(".wesAnimTools", "py")
+
+    wes.UI()
