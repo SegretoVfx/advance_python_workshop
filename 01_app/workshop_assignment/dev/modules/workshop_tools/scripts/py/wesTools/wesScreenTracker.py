@@ -38,11 +38,12 @@ import maya.cmds as cmds
 import maya.mel as mel
 
 #Gather Imports
-import wesUtils
-reload(wesUtils)
-from wesUtils import setActiveWindow
-from wesUtils import editAttrChannels
-from wesUtils import chosenModifiers
+from . import wesUtils
+import importlib
+importlib.reload(wesUtils)
+from .wesUtils import setActiveWindow
+from .wesUtils import editAttrChannels
+from .wesUtils import chosenModifiers
 
 usr_timeline = True
 
@@ -114,8 +115,8 @@ def runSetupOnce(start_fr,end_fr,item):
 
 	save_start = int(cmds.playbackOptions(q=True, min=True))
 	save_end = int(cmds.playbackOptions(q=True, max=True))
-	print " in run setup once :  " + str(save_start)
-	print " in run setup once :  " + str(save_end)
+	print(" in run setup once :  " + str(save_start))
+	print(" in run setup once :  " + str(save_end))
 
 	cmds.playbackOptions(e=True, min=start_fr)    
 	cmds.playbackOptions(e=True, max=end_fr)
@@ -237,7 +238,7 @@ def updateWASize():
 	setActiveWindow()
 
 	for jnt in the_joints:
-		print jnt
+		print(jnt)
 		cmds.setAttr(jnt+".radius", float(arc_size))
 
 	setActiveWindow()

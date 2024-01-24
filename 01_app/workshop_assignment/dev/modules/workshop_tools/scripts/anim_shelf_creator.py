@@ -58,17 +58,6 @@ class AnimShelf(Shelf_Builder.Builder):
 
         # ------------------------------------------------------------
         # --- TOOLS ---
-
-        # --- wes anim tools ---
-        # --- save increment ---
-        # self.add_button(
-        #     label="",
-        #     annotation="Open Wes Anim Tools",
-        #     icon="ws_shelf_tools.png",
-        #     command=animfunc.save_scene_increment,
-        # )
-
-        ## LOAD
         self.add_button(
             "",
             icon="ws_shelf_tools.png",
@@ -78,27 +67,32 @@ class AnimShelf(Shelf_Builder.Builder):
         p = cmds.popupMenu(b=3, postMenuCommand="")
         # LMB will open a sub menu
         p = cmds.popupMenu(b=1)
-        # Scene content
+
+        # --- WES TOOLS ---
         self.add_menu_item(
             p,
             "Wes anim tools",
             icon="",
             command=animfunc.launch_wes_tools,
         )
-        # asset loader
+
+        # --- ACK TOOLS ---
         self.add_menu_item(
             p,
-            "Asset Loader",
+            "ack anim tools",
             icon="",
-            command="",
+            command=animfunc.launch_ack_tools,
         )
-        # Cache loader
+        
+        
+        # --- aTOOLS ---
         self.add_menu_item(
             p,
-            "Cache Loader UI",
+            "aTools",
             icon="",
-            command="",
+            command=animfunc.launch_atools,
         )
+        
         # Shotgun Loader
         self.add_menu_item(
             p,

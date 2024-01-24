@@ -85,3 +85,21 @@ def launch_wes_tools(*args):
     wes = importlib.import_module(".wesAnimTools", "py")
 
     wes.UI()
+
+
+# --- ack tools ---
+def launch_ack_tools(*args):
+    """Open the wes tool window
+    There is a lot of usefull tools available there.
+    """
+    ack = importlib.import_module(".ack_launcherUI", "mel")
+
+    ack.AckToolsLauncher()
+
+
+# --- atools ---
+def launch_atools(*args):
+    """install the aTools
+    There is a lot of usefull tools available there.
+    """
+    atools = importlib.import_module(".aToolsInstall", "py")

@@ -36,7 +36,7 @@ def mayaSafeName(usrName, parent_name):
 	safe_name = cmds.createNode('transform', name=usrName, parent=parent_name)
 	cmds.delete(safe_name)
 	cmds.select(usr_sel)
-	print "converted " + usrName + " to " + safe_name
+	print("converted " + usrName + " to " + safe_name)
 	return safe_name
 
 def wesCreateTimeNode():
@@ -64,7 +64,7 @@ def wesCreateTimeNode():
 
 	if cmds.objExists(time_master):
 		cmds.confirmDialog(message=time_master + " node exists already. Please try again!")
-		print time_master + " node already exists"
+		print(time_master + " node already exists")
 		return
 
 	wes_tm = cmds.createNode("transform", name=time_master)
@@ -117,7 +117,7 @@ def wesCreateTimeNode():
 		cmds.connectAttr(wes_tm+".output", time_master+"SlaveConverter.input", force=True)
 		cmds.setAttr(time_master+"SlaveConverter.conversionFactor", 250)
 
-	print time_master + " created"
+	print(time_master + " created")
 
 	#Make retime HUD
 	if not cmds.headsUpDisplay("wesRetimeHUD", exists=True):
@@ -184,14 +184,14 @@ def wesConnectRetime(time_master, action, curve_selected=False):
 			if abc_node:
 				if action == "add":
 					cmds.connectAttr(time_master+"SlaveConverter.output", abc_node[0]+".time", f=True)
-					print "connected timeMaster to ::: " + abc_node[0]+".time"
+					print("connected timeMaster to ::: " + abc_node[0]+".time")
 
 				if action == "remove":
 					try:
 						cmds.disconnectAttr(time_master+"SlaveConverter.output", abc_node[0]+".time")
 					except:
-						print "Nothing to disconnect for : "+ abc_node[0]
-					print "Disconnected ::: " + abc_node[0]+".time ::: from timeMaster"
+						print("Nothing to disconnect for : "+ abc_node[0])
+					print("Disconnected ::: " + abc_node[0]+".time ::: from timeMaster")
 
 
 
@@ -199,9 +199,9 @@ def wesConnectRetime(time_master, action, curve_selected=False):
 		curves_no_retime = [x for x in sel_curves if x not in time_filter]
 		
 		if action == "add":
-			print "Selected Curves Connected! Check script editor for details."
+			print("Selected Curves Connected! Check script editor for details.")
 		if action == "remove":
-			print "Selected Curves Disconnected! Check script editor for details."
+			print("Selected Curves Disconnected! Check script editor for details.")
 
 
 	for node in curves_no_retime:
@@ -222,14 +222,14 @@ def wesConnectRetime(time_master, action, curve_selected=False):
 			#     cmds.connectAttr(time_master+"SlaveConverter.output", node+".input", f=True)
 
 			cmds.connectAttr(time_master+"SlaveConverter.output", node+".input", f=True)
-			print "connected timeMaster to ::: " + node+".input"
+			print("connected timeMaster to ::: " + node+".input")
 
 		if action == "remove":
 			try:
 				cmds.disconnectAttr(time_master+"SlaveConverter.output", node+".input")
 			except:
-				print "Nothing to disconnect for : "+node
-			print "Disconnected ::: " + node+".input ::: from timeMaster"
+				print("Nothing to disconnect for : "+node)
+			print("Disconnected ::: " + node+".input ::: from timeMaster")
 
 
 	#use this later for checking if objects are already driven:
@@ -397,7 +397,7 @@ def wesDeleteRetime(time_master):
 
 def rtSel():
 	time_master = cmds.textScrollList( "myRetimeList", query=True, selectItem=True)
-	print time_master
+	print(time_master)
 	#Just check if there is a retime existing.
 	if time_master == None:
 		cmds.confirmDialog(message="There is no retime created! Please make one first ;)")
@@ -422,7 +422,7 @@ def intialLoadList():
 
 	if not the_list == None:
 		for each in the_list:
-			print each
+			print(each)
 			cmds.textScrollList( "myRetimeList", edit=True, append=each)
 
 			#Now if reTime is on, then bold the font:

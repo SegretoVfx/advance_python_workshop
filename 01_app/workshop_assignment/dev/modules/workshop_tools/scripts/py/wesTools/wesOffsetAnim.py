@@ -48,7 +48,7 @@ def mayaSafeName(usrName):
     safe_name = cmds.createNode('transform', name=usrName)
     cmds.delete(safe_name)
     cmds.select(usr_sel)
-    print "converted " + usrName + " to " + safe_name
+    print("converted " + usrName + " to " + safe_name)
     return safe_name
 
 def grabValues(whatGrabbing):
@@ -134,16 +134,16 @@ def offsetAnim(selection,increment):
         #sel[0] = object
         #now lets look into the curve_and_indexes:
         #rebuilding as list
-        print str(sel) + "<---- This suppose to be the selection groupping"
+        print(str(sel) + "<---- This suppose to be the selection groupping")
         
 
         obj_name = sel[0]
         for curve_grouping in sel[1]:
             curve_name = curve_grouping[0]
             indexes = curve_grouping[1]
-            print obj_name
-            print curve_name
-            print indexes
+            print(obj_name)
+            print(curve_name)
+            print(indexes)
 
             if indexes == "NONE SELECTED":
                 cmds.keyframe(obj_name, relative=True, timeChange=(0 + timeValue), option="over")
@@ -154,7 +154,7 @@ def offsetAnim(selection,increment):
 
                 #Now lets break it down and look at each index range.
                 for ea_range in new_ranges:
-                    print "For: " + curve_name + "   ---     Range list is: " + str(ea_range)
+                    print("For: " + curve_name + "   ---     Range list is: " + str(ea_range))
                     cmds.keyframe(curve_name, index=(ea_range[0], ea_range[1]), relative=True, timeChange=(0 + timeValue), option="over")
                     
 
@@ -228,7 +228,7 @@ def createList():
         new_note.append([sel, groupings])
 
     # [    object , [ [curve ,[indexes]], [curve,[indexes]] ]      ]
-    print new_note
+    print(new_note)
 
 
 
@@ -276,7 +276,7 @@ def createList():
     
         #Write out the values as a note:
         the_note = str(new_note) + "|" + str(increment) + "|" + str(has_offset)
-        print the_note
+        print(the_note)
 
         cmds.addAttr(list_name, dt="string", longName="offsetAnim", shortName="offAnm")
         cmds.setAttr(list_name+".offsetAnim", the_note, type="string")
@@ -302,8 +302,8 @@ def updateButtons():
     increment = grabValues("increment")
     hasOffset = grabValues("hasOffset")
 
-    print hasOffset
-    print increment
+    print(hasOffset)
+    print(increment)
 
     if hasOffset == "True":
         cmds.button("offsetButton", e=True,l="Revert:", bgc=[1, .35, .28])
@@ -317,7 +317,7 @@ def updateButtons():
 
 
     #Select values
-    print grabValues("object_list")
+    print(grabValues("object_list"))
     cmds.select(grabValues("object_list"))
 
 
@@ -331,7 +331,7 @@ def loadList():
     the_list = cmds.listRelatives("wesOffsetAnim_Information", children=True)
     if not the_list == None:
         for each in the_list:
-            print each
+            print(each)
             cmds.textScrollList( "myOffsetList", edit=True, append=each)
 
 
