@@ -11,9 +11,10 @@
 
 import os
 import sys
+import importlib
 
 
-def unload(pkg):
+def unload_module(pkg, *Args):
     """unload imported package/modules.
 
     Args:
@@ -34,3 +35,8 @@ def unload(pkg):
 
     for name in to_unload:
         sys.modules.pop(name)
+
+
+def import_module(pkg_path, pkg, *Args):
+    importlib.import_module(f"{pkg_path}.{pkg}")
+    importlib.reload(f"{pkg_path}.{pkg}")

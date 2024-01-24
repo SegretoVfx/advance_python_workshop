@@ -19,6 +19,9 @@ from functools import partial
 
 class AnimShelf(Shelf_Builder.Builder):
     def build(self):
+        #------------------------------------------------------------
+        # --- FILE ---
+        
         # --- open file ---
         self.add_button(
             label="",
@@ -46,18 +49,16 @@ class AnimShelf(Shelf_Builder.Builder):
         # --- save increment ---
         self.add_button(
             label="",
-            annotation="Incremental save scene",
+            annotation="Increment save scene",
             icon="ws_shelf_saveIncrement.png",
             command=animfunc.save_scene_increment,
         )
 
-        ## SAVE
-        # self.add_button(
-        #     label="",
-        #     annotation="Save increment scene",
-        #     icon="ws_shelf_saveSG.png",
-        #     command="",
-        # )
+
+        self.add_sub_separator()
+
+        # update all reference in the scene
+        self.add_menu_item(p, "Update All Referenced Assets", icon="", command="")
 
         ## LOAD
         self.add_button(
@@ -82,11 +83,22 @@ class AnimShelf(Shelf_Builder.Builder):
             icon="ws_shelf_SG.png",
             command="",
         )
-
         self.add_sub_separator()
 
         # update all reference in the scene
         self.add_menu_item(p, "Update All Referenced Assets", icon="", command="")
+        
+        #------------------------------------------------------------
+        # --- TOOLS ---
+        
+        # --- wes anim tools ---
+                # --- save increment ---
+        self.add_button(
+            label="",
+            annotation="Open Wes Anim Tools",
+            icon="ws_shelf_tools.png",
+            command=animfunc.save_scene_increment,
+        )
 
 
 AnimShelf()
