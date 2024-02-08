@@ -1,0 +1,65 @@
+VIEWPORT
+
+ackToggleCams
+    To enter the setup window:
+    source ackToggleCams; ackToggleCams_setup;
+
+ackToggleNURBSCurves
+ackToggleModel
+ackToggleImagePlane
+ackToggleHighlight (selected geo)
+
+ackToggleTranslateMode 
+ackToggleRotateMode
+
+
+
+GRAPH EDITOR (selection)
+
+
+ackCycleTangents
+ackToggleTangentType
+
+ackZeroOutKeys 
+ackDeleteKey
+ackDeleteRedundant
+ackSwapKeys
+ackSliceCurves (add key preserving tangent)
+ackTimingFramework (insert key on all channel)
+ackSteppedTween
+
+ackSnapEndKeyValues (cycle)
+ackSnapKeyValues (snap all value to last selected key - created Hold)
+ackSnapAnimation (offset selection to let key value)
+
+ackNegateKeys
+ackSnapToTime (selection to cursor)
+ackMoveKeys
+    ackMoveKeys "left";
+    ackMoveKeys "right";
+    ackMoveKeys "up";
+    ackMoveKeys "down";
+    ackMoveKeys "convergeLeft";
+    ackMoveKeys "convergeRight";
+ackConvergeBuffer
+    ackConvergeBuffer "toward";
+    ackConvergeBuffer "away";
+    ackConvergeBuffer "snap";
+ackSpreadSqueezeTiming (plus 1 frame)
+    ackSpreadSqueezeTiming "spread";
+    ackSpreadSqueezeTiming "squeeze";
+ackPushPull
+    ackPushPull "push";
+    ackPushPull "pull";
+
+ackToggleKeyColor
+
+
+
+GENERAL
+
+ackSetup
+    ackSetup "setup";
+ackGotoTime
+ackNewGraphEditor
+ackPlayblastSelectedKeys (selected keys)
