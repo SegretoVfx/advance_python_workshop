@@ -9,9 +9,20 @@
 # Usage =
 """This tool is working better based on a treadmill walk/run cycle.
 
-With the root control, give the characer a broad motion according to your needs
+ 1 - With the root control, give the characer a broad motion according to your needs.
 
-Then, with the root selected, press "create path"
+ 2 - Then, with the root selected, press "create path".
+
+     It will create a motion path curve, based on the root animation. 
+
+ 3 - Do the same step 1 and 2 with the character's hip controller selected.
+    
+     It will create a motion path curve for the hip.
+
+ 4 - Click on "Hook to paths".
+
+     It will link the controllers to the motion path 
+     The base animation speed should be quite similar.
 
 blah blah """
 # ------------------------------------------------------------
@@ -30,7 +41,7 @@ def build_motion_path(control):
     # Get the list of the keysframes where keys are set
     # To build the curve_path based on the position of current keys
     # The more keys on the root, the more precise the curve will be.
-    key_list = cmds.keyframe(root, attribute="translate", query=True, time=())
+    key_list = cmds.keyframe(control, attribute="translate", query=True, time=())
     kl = list(dict.fromkeys(key_list))
     kl.sort()
 
