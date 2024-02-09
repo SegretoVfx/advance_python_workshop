@@ -30,7 +30,7 @@ def build_motion_path(control):
     # Get the list of the keysframes where keys are set
     # To build the curve_path based on the position of current keys
     # The more keys on the root, the more precise the curve will be.
-    key_list = cmds.keyframe(root, attribute="translate", query=True, time=())
+    key_list = cmds.keyframe(control, attribute="translate", query=True, time=())
     kl = list(dict.fromkeys(key_list))
     kl.sort()
 
