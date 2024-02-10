@@ -9,9 +9,20 @@
 # Usage =
 """This tool is working better based on a treadmill walk/run cycle.
 
-With the root control, give the characer a broad motion according to your needs
+ 1 - With the root control, give the characer a broad motion according to your needs.
 
-Then, with the root selected, press "create path"
+ 2 - Then, with the root selected, press "create path".
+
+     It will create a motion path curve, based on the root animation. 
+
+ 3 - Do the same step 1 and 2 with the character's hip controller selected.
+    
+     It will create a motion path curve for the hip.
+
+ 4 - Click on "Hook to paths".
+
+     It will link the controllers to the motion path 
+     The base animation speed should be quite similar.
 
 blah blah """
 # ------------------------------------------------------------
