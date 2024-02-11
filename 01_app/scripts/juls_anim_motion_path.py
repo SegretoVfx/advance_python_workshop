@@ -70,6 +70,7 @@ def get_ctrl_position(control):
             )
         )
     )
+
     keys_lst.sort()
 
     # For each frame in list get translate data.
