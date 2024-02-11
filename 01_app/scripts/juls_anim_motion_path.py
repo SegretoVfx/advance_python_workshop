@@ -7,53 +7,80 @@
 # Email  = segretovfx@gmail.com
 #
 # Usage =
-"""This tool is working better based on a treadmill walk/run cycle.
+"""
+This tool is intended to be used with  a treadmill walk/run cycle animation.
+- Select the root control of the animated character.
+- In the UI Click on the [>>] button next to the root control label to set the
+    name of the root control to the textField.
+- Select the hip control of the animated character.
+- In the UI Click on the [>>] button next to the hip control label to set the
+    name of the hip control to the textField.
 
- 1 - With the root control, give the characer a broad motion according to your needs.
-
- 2 - Then, with the root selected, press "create path".
-
-     It will create a motion path curve, based on the root animation. 
-
- 3 - Do the same step 1 and 2 with the character's hip controller selected.
+- Give the character a broad motion.
+    NOTE : The more keys you set to the root control, the more precise the
+    motion path will be.
     
-     It will create a motion path curve for the hip.
+- In the UI, click on [create paths].
+    This will magically create the motion paths for the root and the hip
+    Based on the animation you gave earlier.
+    By default, it'll create a few locators constrained on the paths.
+    You'll see later how to use these locators.
+ 
 
- 4 - Click on "Hook to paths".
-
-     It will link the controllers to the motion path 
+- Now Click on [Hook to paths].
+     It will link the controllers to the appropriate motion paths.
      The base animation speed should be quite similar.
 
 blah blah """
 # ------------------------------------------------------------
 
-import maya.cmds as cmds
+from maya import cmds
+
+
+def get_ctrl_position(control):
+    """List the position of the selected controller for each key
+
+    Args:
+        control (str): Name of the controller to use as as guide for motion pass creation
+
+    Returns:
+        lst(str): _description_
+    """
+    # ------------------------------------------------------------
+    # --- Get controller's translation data ---
+    pos_lst = []
+
+    # Filter the key list
+    keys_lst = list(
+        dict.fromkeys(
+            cmds.keyframe(
+                control,
+                q=True,
+                at="translate",
+                t=(),
+            )
+        )
+    )
+    keys_lst.sort()
+
+    for key in keys_lst:
+
+        # Set current time to the current key
+        cmds.currentTime(key, edit=True)
+
+        # Take translate data from the controller
+        trans = cmds.xform(control, q=True, translation=True)
+
+        pos_lst.append(tuple(trans))
+
+    return pos_lst
 
 
 def build_motion_path(control):
 
-    # start_key = cmds.playbackOptions(q=True, animationStartTime=True)
-
-    # qkkcmds.currentTime(start_key)
-
-    trans_lst = []
-
-    # Get the list of the keysframes where keys are set
-    # To build the curve_path based on the position of current keys
-    # The more keys on the root, the more precise the curve will be.
-    key_list = cmds.keyframe(control, attribute="translate", query=True, time=())
-    kl = list(dict.fromkeys(key_list))
-    kl.sort()
-
-    for key in kl:
-
-        # Set current time to the first key
-        cmds.currentTime(key, edit=True)
-
-        trans = cmds.xform(control, q=True, translation=True)
-
-        trans_lst.append(tuple(trans))
-
+    position_lst = get_ctrl_position(control)
+    # ------------------------------------------------------------
+    # --- Trace curve motion path ---
     path_curve_name = f"path_curve_{control}"
     if cmds.objExists(path_curve_name):
         cmds.delete(path_curve_name)
@@ -62,7 +89,7 @@ def build_motion_path(control):
     cmds.curve(
         name=path_curve_name,
         d=2,
-        point=trans_lst,
+        point=position_lst,
     )
 
 
