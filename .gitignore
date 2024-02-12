@@ -7,3 +7,15 @@
 01_app/scripts/__pycache__/juls_anim_motion_path.cpython-310.pyc
 img/Screenshot 2024-02-11 205716.png
 img/window_01.png
+*.pyc
+
+*.log
+
+.DS_Store
+*/__pycache__/
+
+~/
+
+.idea/
+
+/maya-scene/
