@@ -43,7 +43,6 @@ def delete_obj(obj: str):
     Args:
         obj (str): Name of the maya node to delete
     """
-
     if cmds.objExists(obj):
         cmds.delete(obj)
 
@@ -58,7 +57,7 @@ def get_ctrl_position(control):
         pos_lst = lst(str): _description_
     """
     pos_lst = []
-
+    
     # List all the frames with a translate key.
     keys_lst = list(
         dict.fromkeys(
@@ -70,21 +69,24 @@ def get_ctrl_position(control):
             )
         )
     )
-
+    
     keys_lst.sort()
-
+    
     # For each frame in list get translate data.
     for key in keys_lst:
-
         # Set current time to the key
         cmds.currentTime(key, edit=True)
-
+        
         # Append translate data.
         trans = cmds.xform(control, q=True, translation=True)
-
+        
         pos_lst.append(tuple(trans))
-
+    
     return pos_lst
+
+
+def build_motion_path_hierarchy(main_path):
+    hip_path = cmds.duplicate(main_path)
 
 
 def build_motion_path(control):
@@ -94,27 +96,30 @@ def build_motion_path(control):
         control (str): Name of the control that will follow the motion path
 
     returns:
-        True if succeeded
-        False if failed
+       str : Root Motion path name
     """
     # Get the list of position
     position_lst = get_ctrl_position(control)
-
+    
     path_curve_name = f"path_curve_{control}"
-
+    
     # Build the path curve.
     delete_obj(path_curve_name)
-
+    
     cmds.curve(
         name=path_curve_name,
         d=2,
         point=position_lst,
     )
+    
+    return path_curve_name
 
 
 def main():
     print("Build the curve")
-
+    
     root_ctl = cmds.ls(sl=True)[0]
-
-    build_motion_path(root_ctl)
+    
+    root_path_name = build_motion_path(root_ctl)
+    
+    build_motion_path_hierarchy(root_path_name)
