@@ -11,8 +11,8 @@
 import os
 import importlib
 
-import maya.mel as mel
-import maya.cmds as cmds
+from maya import mel
+from maya import cmds
 
 import maya_utils
 
@@ -29,7 +29,7 @@ def save_scene(*args):
     if maya_utils.get_cur_scn_full_path():
         cmds.file(save=True)
     else:
-        maya_utils.confirm_dialog("The current file must be saved as...")
+        maya_utils.confirm_dialog("The current file must be saved...")
 
 
 def save_scene_as(*args):
@@ -100,14 +100,14 @@ def launch_awe_picker(*args):
     mel.eval(f"{_content}")
 
 
-def launch_dw_picker(*args):
-    # import dwpicker
-    importlib.import_module(".dwpicker", "py")
-    dwpicker.show()
+#def launch_dw_picker(*args):
+#   # import dwpicker
+#   importlib.import_module("dwpicker", "py")
+#   dwpicker.show()
 
 
 def launch_pr_selection(*args):
-    importlib.import_module(".prSelectionUi", "py")
+    importlib.import_module("prSelectionUi", "py")
 
     prSelectionUi.UI()
 
@@ -134,10 +134,17 @@ def launch_playblast(*args):
 # ------------------------------------------------------------
 # --- JULS ANIM PATH TOOL ---
 def launch_juls_anim_path(*args):
-    import juls_anim_motion_path
-
+    from py import juls_anim_motion_path
+    importlib.reload(juls_anim_motion_path)
     juls_anim_motion_path.main()
 
+
+# ------------------------------------------------------------
+# --- Launch Studio library ---
+
+def launch_studiolib(*args):
+    import studiolibrary
+    studiolibrary.main()
 
 # ------------------------------------------------------------
 # --- EDITORS ---

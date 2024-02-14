@@ -11,9 +11,10 @@
 import os
 import pathlib
 
-import maya.cmds as cmds
 
+from maya import cmds
 
+# ------------------------------------------------------------
 # --- SCENE NAME MANIPULATION ---
 def get_cur_scn_parent_dir():
     ws = cmds.workspace(q=True, dir=True)
@@ -68,7 +69,7 @@ def get_cur_scn_version(file_name):
 
     return None
 
-
+# ------------------------------------------------------------
 # --- INCREMENT ---
 def increment_input(input):
     if not input.isnumeric():
@@ -107,6 +108,8 @@ def increment_file_name(file_name=None):
     else:
         return None
 
+# ------------------------------------------------------------
+# --- Call to Maya built-in ---
 # --- MAYA ACTION ---
 def do_playblast(output):
     """Launch a background playblast without opening the Maya GUI

@@ -3,7 +3,7 @@
 *.pyc
 *.log
 .DS_Store
-*__pycache__*
+*__pycache__/
 
 .venv/
 .idea/.gitignore
@@ -16,3 +16,4 @@
 ~/.vim/autoload/plug.vim
 temp
 .idea/inspectionProfiles/Project_Default.xml
+/maya-scene/

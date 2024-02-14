@@ -13,13 +13,13 @@
 # ------------------------------------------------------------
 
 
+import importlib
 import maya.cmds as cmds
 
 from functools import partial
 
 import anim_shelf_functions as animfunc
-
-
+importlib.reload(animfunc)
 
 dev_mode = True
 
@@ -34,32 +34,32 @@ class Builder:
     """A simple class to build shelves in maya. Since the build method is empty,
     it should be extended by the derived class to build the necessary shelf elements.
     By default it creates an empty shelf called "customShelf"."""
-
+    
     def __init__(self, name=shelf_name, iconPath=""):
         self.name = name
-
+        
         self.iconPath = iconPath
-
+        
         self.labelBackground = (0.2, 0, 0.5, 1)
         self.labelColour = (0, 1, 1)
-
+        
         self.clean_old_shelf()
         cmds.setParent(self.name)
         self.build()
-
+    
     def build(self):
         """This method should be overwritten in derived classes to actually
         build the shelf elements. Otherwise, nothing is added to the shelf."""
         pass
-
+    
     def add_button(
-        self,
-        label,
-        annotation,
-        icon="segretoShelf.png",
-        command=_null,
-        doubleCommand=_null,
-        enable=True,
+            self,
+            label,
+            annotation,
+            icon="segretoShelf.png",
+            command=_null,
+            doubleCommand=_null,
+            enable=True,
     ):
         """Adds a shelf button with the specified label, command, double click
         command and image."""
@@ -80,7 +80,7 @@ class Builder:
             olc=self.labelColour,
             annotation=annotation,
         )
-
+    
     def add_separator(self):
         """Adds a shelf button with the specified label, command, double click
         command and image."""
@@ -93,30 +93,30 @@ class Builder:
             olb=self.labelBackground,
             olc=self.labelColour,
         )
-
+    
     def add_sub_separator(self):
         """Adds separator in the menu list."""
         cmds.setParent(self.name)
         cmds.menuItem(divider=True)
-
+    
     def add_menu_item(self, parent, label, command=_null, icon=""):
         """Adds a shelf button with the specified label, command, double click
         command and image."""
         if icon:
             icon = self.iconPath + icon
         return cmds.menuItem(p=parent, l=label, c=command, i=icon, tearOff=1)
-
+    
     def _disabled_add_menu_item(self, parent, label, command=_null, icon=""):
         """Disabled menu"""
         return cmds.menuItem(p=parent, l=label, tearOff=1, enable=False)
-
+    
     def add_sub_menu(self, parent, label, icon=None):
         """Adds a sub menu item with the specified label and icon to the
         specified parent popup menu."""
         if icon:
             icon = self.iconPath + icon
         return cmds.menuItem(p=parent, l=label, i=icon, subMenu=1, tearOff=1)
-
+    
     def clean_old_shelf(self):
         """Checks if the shelf exists and empties it if it does or creates it
         if it does not."""
@@ -128,13 +128,11 @@ class Builder:
             cmds.shelfLayout(self.name, p="ShelfLayout")
 
 
-
-
 class AnimShelf(Builder):
     def build(self):
         # ------------------------------------------------------------
         # --- FILE ---
-
+        
         # --- open file ---
         self.add_button(
             label="",
@@ -142,7 +140,13 @@ class AnimShelf(Builder):
             icon="ws_shelf_open.png",
             command=animfunc.open_scene,
         )
-
+        
+        # ------------------------------------------------------------
+        # Add separator for safety (can click on save unintentionally)
+        
+        self.add_separator()
+        
+        # ------------------------------------------------------------
         # --- save ---
         self.add_button(
             label="",
@@ -150,7 +154,7 @@ class AnimShelf(Builder):
             icon="ws_shelf_saveLocal.png",
             command=animfunc.save_scene,
         )
-
+        
         # --- save as ---
         self.add_button(
             label="",
@@ -158,7 +162,7 @@ class AnimShelf(Builder):
             icon="ws_shelf_saveAs.png",
             command=animfunc.save_scene_as,
         )
-
+        
         # --- save increment ---
         self.add_button(
             label="",
@@ -166,11 +170,11 @@ class AnimShelf(Builder):
             icon="ws_shelf_saveIncrement.png",
             command=animfunc.save_scene_increment,
         )
-
+        
         # ------------------------------------------------------------
-
+        
         self.add_separator()
-
+        
         # ------------------------------------------------------------
         # --- TOOLS ---
         self.add_button(
@@ -182,7 +186,7 @@ class AnimShelf(Builder):
         p = cmds.popupMenu(b=3, postMenuCommand="")
         # LMB will open a sub menu
         p = cmds.popupMenu(b=1)
-
+        
         # --- WES TOOLS ---
         self.add_menu_item(
             p,
@@ -190,7 +194,7 @@ class AnimShelf(Builder):
             icon="",
             command=animfunc.launch_wes_tools,
         )
-
+        
         # --- ACK TOOLS ---
         self.add_menu_item(
             p,
@@ -198,7 +202,7 @@ class AnimShelf(Builder):
             icon="",
             command=animfunc.launch_ack_tools,
         )
-
+        
         # --- aTOOLS ---
         self.add_menu_item(
             p,
@@ -206,7 +210,7 @@ class AnimShelf(Builder):
             icon="",
             command=animfunc.launch_atools,
         )
-
+        
         # ------------------------------------------------------------
         # --- PICKERS ---
         self.add_button(
@@ -218,7 +222,7 @@ class AnimShelf(Builder):
         p = cmds.popupMenu(b=3, postMenuCommand="")
         # LMB will open a sub menu
         p = cmds.popupMenu(b=1)
-
+        
         # --- AWE CONTROL PICKER ---
         self.add_menu_item(
             p,
@@ -226,15 +230,15 @@ class AnimShelf(Builder):
             icon="aweControlPicker.png",
             command=animfunc.launch_awe_picker,
         )
-
+        
         # --- DW PICKER ---
-        self.add_menu_item(
-            p,
-            "DW picker",
-            icon="",
-            command=animfunc.launch_dw_picker,
-        )
-
+        #self._disabled_add_menu_item(
+        # p,
+        #     "DW picker",
+        #     icon="",
+        #     command=animfunc.launch_dw_picker,
+        # )
+        
         # --- pr Selection ---
         self.add_menu_item(
             p,
@@ -242,11 +246,11 @@ class AnimShelf(Builder):
             icon="shelf_prSelectionUi.bmp",
             command=animfunc.launch_pr_selection,
         )
-
+        
         # ------------------------------------------------------------
-
+        
         self.add_separator()
-
+        
         # ------------------------------------------------------------
         # --- PLAYBLAST ---
         self.add_button(
@@ -258,7 +262,7 @@ class AnimShelf(Builder):
         p = cmds.popupMenu(b=3, postMenuCommand="")
         # LMB will open a sub menu
         p = cmds.popupMenu(b=1)
-
+        
         # --- Playblast Camera ---
         self.add_menu_item(
             p,
@@ -266,12 +270,11 @@ class AnimShelf(Builder):
             icon="",
             command=animfunc.launch_playblast,
         )
-
+        
         # ------------------------------------------------------------
-
+        
         self.add_separator()
-
-
+        
         # ------------------------------------------------------------
         # --- ANIM PATH TOOL---
         self.add_button(
@@ -281,7 +284,18 @@ class AnimShelf(Builder):
             command=animfunc.launch_juls_anim_path,
         )
         
-
+        # ------------------------------------------------------------
+        
+        self.add_separator()
+        
+        # ------------------------------------------------------------
+        # --- save ---
+        self.add_button(
+            label="",
+            annotation="launch Studio Library",
+            icon="studiolibrary.png",
+            command=animfunc.launch_studiolib,
+        )
         # ------------------------------------------------------------
         # --- SCRIPT EDITORS ---
         if dev_mode:
@@ -290,7 +304,7 @@ class AnimShelf(Builder):
             self.add_separator()
             self.add_separator()
             self.add_separator()
-
+            
             self.add_button(
                 "",
                 icon="ws_shelf_editor.png",
@@ -300,7 +314,7 @@ class AnimShelf(Builder):
             p = cmds.popupMenu(b=3, postMenuCommand="")
             # LMB will open a sub menu
             p = cmds.popupMenu(b=1)
-
+            
             # --- link ports with vscode ---
             self.add_menu_item(
                 p,
@@ -308,7 +322,7 @@ class AnimShelf(Builder):
                 icon="vs_code_icon.png",
                 command=partial(animfunc.link_editor_port, "vscode"),
             )
-
+            
             # --- link ports with Pycharm ---
             self.add_menu_item(
                 p,
@@ -316,7 +330,7 @@ class AnimShelf(Builder):
                 icon="pycharm_icon.png",
                 command=partial(animfunc.link_editor_port, "pycharm"),
             )
-
+            
             # --- playblast in background ---
             self.add_menu_item(
                 p,
@@ -324,6 +338,3 @@ class AnimShelf(Builder):
                 icon="disconnect.png",
                 command=animfunc.disconnect_port,
             )
-
-
-
