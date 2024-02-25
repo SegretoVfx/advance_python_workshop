@@ -3,10 +3,10 @@
 *.log
 
 .DS_Store
-*/__pycache__/
+*/__pycache__/*
 
 ~/
 
 .idea/
 
-/maya-scene/
+/maya-scene/*
