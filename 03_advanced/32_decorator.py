@@ -3,7 +3,7 @@
 #
 # date    = 2022-08-07
 # email   = contact@alexanderrichtertd.com
-#************************************************************************************
+# ************************************************************************************
 
 
 """
@@ -30,25 +30,36 @@ START - long_sleeping
 import time
 
 
-#*********************************************************************
+# *********************************************************************
 # DECORATOR
 def print_process(func):
     def wrapper(*args, **kwargs):
-        func(arg)                  # main_function
+        print(f"START {func.__name__}")
+        time_start = time.time()
+        timeout = func(args[0])
+        time_end = time.time()
+        print(f"END {round(time_end-time_start, 1)}")
+
     return wrapper
 
 
-#*********************************************************************
+# *********************************************************************
 # FUNC
 @print_process
 def short_sleeping(name):
-    time.sleep(.1)
-    print(name)
+    time.sleep(1)
 
-def mid_sleeping():
+
+@print_process
+def mid_sleeping(name):
     time.sleep(2)
 
-def long_sleeping():
+
+@print_process
+def long_sleeping(name):
     time.sleep(4)
 
-short_sleeping("so sleepy")
+
+short_sleeping("power nap time")
+mid_sleeping("power*2 nap time")
+long_sleeping("got to bed")
