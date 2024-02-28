@@ -3,6 +3,7 @@
 *.pyc
 *.log
 .DS_Store
+<<<<<<< HEAD
 *__pycache__/
 
 .venv/
@@ -16,13 +17,20 @@
 img/Screenshot 2024-02-11 205716.png
 img/window_01.png
 
+=======
+*/__pycache__/*
+>>>>>>> assignment
 
 ~/
 
 .idea/
 
+<<<<<<< HEAD
 .vscode/settings.json
 ~/.vim/autoload/plug.vim
 temp
 .idea/inspectionProfiles/Project_Default.xml
 /maya-scene/
+=======
+/maya-scene/*
+>>>>>>> assignment
