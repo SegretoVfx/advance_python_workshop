@@ -51,8 +51,8 @@ you can launch the tool by typing into the *Maya script editor*.
 You also can drag and drop this script to create a direct shelf button to the
 world space tool.
 ```
-import juls_anim_motion_path
-juls_anim_motion_path.main()
+     import juls_anim_motion_path_ui
+     juls_anim_motion_path_ui.load()
 ```
 
 A window will open up with all the instructions for using the tool.
