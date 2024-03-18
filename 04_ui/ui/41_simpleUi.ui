@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>wgWindow</class>
+ <widget class="QWidget" name="wgWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>150</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>500</width>
+    <height>150</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>500</width>
+    <height>150</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Sitka Text Semibold</family>
+    <pointsize>18</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>SimpleUi</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/newPrefix/Advanced-Python-Workshop-Alexander-Richter/course/40_ui/lecture_notes/arSave/img/btn_camera.png</normaloff>:/newPrefix/Advanced-Python-Workshop-Alexander-Richter/course/40_ui/lecture_notes/arSave/img/btn_camera.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+	color: rgb(169, 232, 255);
+	background-color: rgb(88, 88, 88);
+	selection-background-color: rgb(255, 16, 160);
+	selection-color: rgb(170, 255, 255);
+}
+
+QListWidget::item:selected
+{
+   color: rgb(235, 235, 235);
+   background-color: rgb(61, 120, 200);
+}
+
+QPushButton { 
+	border:10px;
+border-width: 1px;
+padding: 1px;
+border-style: solid;
+border-radius: 5px;
+}
+
+QPushButton:hover { 
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(64, 79, 91, 255), stop:1 rgba(21, 41, 28, 255));
+}
+
+QPushButton:pressed{ 
+	 border: 0px solid green;
+}
+
+QToolTip { 
+	background-color: rgb(52, 52, 52);
+	color: rgb(241, 241, 241);
+	border: black solid 1px;
+}
+
+QVerticalWidget:{rgb(52, 52, 52)}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="verticalWidget" native="true">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="leftMargin">
+       <number>9</number>
+      </property>
+      <property name="topMargin">
+       <number>9</number>
+      </property>
+      <property name="rightMargin">
+       <number>9</number>
+      </property>
+      <property name="bottomMargin">
+       <number>9</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Do you accept ?</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="bottomMargin">
+         <number>9</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="btnAccept">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>15</pointsize>
+           </font>
+          </property>
+          <property name="toolTip">
+           <string>print accept</string>
+          </property>
+          <property name="text">
+           <string>Accept</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/newPrefix/Advanced-Python-Workshop-Alexander-Richter/course/40_ui/lecture_notes/arSave/img/btn_user.png</normaloff>:/newPrefix/Advanced-Python-Workshop-Alexander-Richter/course/40_ui/lecture_notes/arSave/img/btn_user.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>25</width>
+            <height>25</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="lineWidth">
+           <number>4</number>
+          </property>
+          <property name="midLineWidth">
+           <number>2</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btnHelp">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>15</pointsize>
+           </font>
+          </property>
+          <property name="toolTip">
+           <string>Open AR web site</string>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>help</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/newPrefix/Advanced-Python-Workshop-Alexander-Richter/course/40_ui/lecture_notes/arSave/img/btn_help.png</normaloff>:/newPrefix/Advanced-Python-Workshop-Alexander-Richter/course/40_ui/lecture_notes/arSave/img/btn_help.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>25</width>
+            <height>25</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="temp.qrc"/>
+ </resources>
+ <connections/>
+</ui>
